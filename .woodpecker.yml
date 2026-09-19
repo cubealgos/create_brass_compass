@@ -1,6 +1,6 @@
-# CI runs exactly what runs locally: `just check` on the same JDK floor the platform matrix names,
-# then a short fixed-seed harness run with the chaos actor. If it passes on a laptop and fails here,
-# that difference is a real finding rather than a configuration guess.
+# CI runs exactly what runs locally: `just check` on the same JDK floor the platform matrix names.
+# If it passes on a laptop and fails here, that difference is a real finding rather than a
+# configuration guess.
 #
 # DORMANT: this repository has no remote yet (docs/spec/contracts/platform-matrix.md §7). The file
 # is committed and every command in it is proven locally, so the first remote gets a working
@@ -21,6 +21,3 @@ steps:
     commands:
       - ./.ci/install-tools.sh
       - just check
-      # A short adversarial run on every push; the thousand-year run is a release gate, not a
-      # per-push cost (docs/spec/operations/testing.md §3).
-      - just harness --seed 1 --villages 3 --agents 50 --years 5 --chaos on

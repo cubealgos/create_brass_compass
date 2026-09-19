@@ -61,3 +61,19 @@ doctor-toolchain:
 
 # Everything a merge must survive.
 check: lint map-check test gametest
+
+# The release build (REL-REQ-001): only from a clean checkout at a tag; writes dist/ with the jar,
+# its SHA-256 and the notes to paste into the release.
+release:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    if [ -n "$(git status --porcelain)" ]; then echo "release: the checkout is not clean"; exit 1; fi
+    tag=$(git describe --exact-match --tags 2>/dev/null) || { echo "release: HEAD is not at a tag"; exit 1; }
+    version=$(sed -n 's/^version = "\(.*\)"$/\1/p' build.gradle.kts)
+    [ "$tag" = "v$version" ] || { echo "release: tag $tag is not v$version"; exit 1; }
+    ./gradlew clean build
+    rm -rf dist && mkdir dist
+    cp "build/libs/create_brass_compass-$version.jar" dist/
+    (cd dist && shasum -a 256 "create_brass_compass-$version.jar" > "create_brass_compass-$version.jar.sha256")
+    python3 tools/release_notes.py "$version" > "dist/release-notes-$version.md"
+    echo "release: dist/ holds the jar, its SHA-256 and the notes for $tag"
