@@ -56,7 +56,7 @@ One table in the ticket, one test class per domain, two mock server players for 
 
 - [x] Every requirement has a named test or a recorded reason it cannot be tested headless (table above, 2026-09-19).
 - [x] `just check` green three runs in a row (2026-09-19, 12 game tests, unit tests, map and spec copy each time).
-- [ ] Kevin's client checklist done and noted here. First pass 2026-09-19 on the BC-6 build: needle, tab and both screens seen; three changes asked (dialog, row icons, glint), done on this branch; second pass pending.
+- [x] Kevin's client checklist done and noted here. 2026-09-19, five passes: needle, tab, both screens, glint. Changes asked and done: address-style dialog, then slimmer dialog with centred rows and a capped label, row glyphs sized to the X, footer-less list, tracker written only on change, the compasses tag for the special glint, glyphs as the dialog's buttons, the X in cream. Kevin: "apart from that everything seems to work fine now".
 
 ## Constraints and prior findings
 
