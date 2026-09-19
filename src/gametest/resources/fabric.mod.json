@@ -8,7 +8,8 @@
   "entrypoints": {
     "fabric-gametest": [
       "brass_compass.gametest.SmokeGameTest",
-      "brass_compass.gametest.ComponentGameTest"
+      "brass_compass.gametest.ComponentGameTest",
+      "brass_compass.gametest.NeedleGameTest"
     ]
   },
   "depends": {

@@ -16,9 +16,9 @@ signature page before calling into a package you did not write.
 | `brass_compass` | root | BrassCompass |  |
 | `brass_compass.client` | root | BrassCompassClient |  |
 | `brass_compass.destinations` | root | Destinations, Entry, Names | The pure part: a compass's entries and the choice per dimension, with no Minecraft imports (docs/spec/contracts/data-contract.md). |
-| `brass_compass.item` | root | DestinationsCodec | The item side: the data component over the pure model, the item, its needle and tooltip. |
+| `brass_compass.item` | root | BrassCompassItem, DestinationsCodec | The item side: the data component over the pure model, the item, its needle and tooltip. |
 | `brass_compass.destinations` | root (test) | DestinationsTest |  |
-| `brass_compass.gametest` | root (gametest) | ComponentGameTest, SmokeGameTest |  |
+| `brass_compass.gametest` | root (gametest) | ComponentGameTest, NeedleGameTest, SmokeGameTest |  |
 
 | build script | what |
 |---|---|
@@ -29,4 +29,5 @@ signature page before calling into a package you did not write.
 |---|---|---|
 | `tools/doctor.py` | Toolchain floors and the spec copy, per docs/spec/contracts/platform-matrix.md. | `run()`, `parse_version(text)`, `check_java()`, `check_wrapper()`, `check_tool(name, floor_key)`, `main_checkout()`, `check_spec_copy()`, `check_map()`, `main()` |
 | `tools/map.py` | Generate the repository map from the source: docs/map.md locates every package, docs/map/.md lists every type's summary and non-private signatures. | `scan_java(src)`, `summary_of(javadoc)`, `squeeze(text)`, `strip_annotations(head)`, `parse_java(path)`, `parse_member(head, type_name, doc)`, `package_summary(package_info)`, `parse_kotlin(path)`, `parse_python(path)`, `project_of(rel)`, `walk(root)`, `collect(root)`, `page_of(pkg)`, `render_locator(tree)`, `render_package(pkg)`, `render_all(root)`, `write(root, files)`, `check(root, files)`, `main(argv)` |
+| `tools/needle.py` | Make the brass compass's needle frames from vanilla's (BC-3, docs/spec/README.md verification #3). | `read_png(data)`, `write_png(w, h, pixels)`, `tint(px)`, `main()` |
 | `tools/test_map.py` | The map generator, exercised as the command a person runs (rule 6 of the standard): a fixture tree in a temporary directory, `python3 tools/map.py` to write, `--check` to pass, an edit to the source, `--check` to fail. | `run(root)` |

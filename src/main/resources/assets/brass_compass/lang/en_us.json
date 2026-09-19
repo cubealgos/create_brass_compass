@@ -1,0 +1,8 @@
+{
+  "item.brass_compass.brass_compass": "Brass Compass",
+  "tooltip.brass_compass.saved": "%s lodestones saved",
+  "tooltip.brass_compass.destination": "Pointing at %s",
+  "tooltip.brass_compass.destination_lost": "%s is gone; the needle spins",
+  "tooltip.brass_compass.no_destination": "No destination",
+  "tooltip.brass_compass.newer_version": "Saved by a newer version; read-only here"
+}
