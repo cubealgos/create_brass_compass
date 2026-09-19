@@ -40,3 +40,4 @@ No remote exists; the tag lives locally until one does. `kontor release prepare`
 
 **Verdict**: approve for `production`. No blocking finding.
 
+**Kevin, 2026-09-19**: approve once Create Fly is pinned to the tested version (the residual note above); the pin is a commit on the release branch before the merge.
