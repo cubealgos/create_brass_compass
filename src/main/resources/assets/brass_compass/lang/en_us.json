@@ -4,5 +4,14 @@
   "tooltip.brass_compass.destination": "Pointing at %s",
   "tooltip.brass_compass.destination_lost": "%s is gone; the needle spins",
   "tooltip.brass_compass.no_destination": "No destination",
-  "tooltip.brass_compass.newer_version": "Saved by a newer version; read-only here"
+  "tooltip.brass_compass.newer_version": "Saved by a newer version; read-only here",
+  "screen.brass_compass.switch": "Brass Compass",
+  "screen.brass_compass.dimension": "Lodestones in %s",
+  "screen.brass_compass.dimension.overworld": "the Overworld",
+  "screen.brass_compass.dimension.the_nether": "the Nether",
+  "screen.brass_compass.dimension.the_end": "the End",
+  "screen.brass_compass.distance": "%s m",
+  "screen.brass_compass.lost": "(gone)",
+  "screen.brass_compass.empty": "No lodestones saved here. Right-click one.",
+  "screen.brass_compass.scroll": "%s to %s of %s; scroll for more"
 }

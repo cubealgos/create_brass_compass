@@ -9,3 +9,13 @@ signature is the contract; read the source only when the summary is not enough.
 The client entrypoint: screens only.
 - `void onInitializeClient()`
 
+### `class SwitchScreen` — `src/main/java/brass_compass/client/SwitchScreen.java`
+The switch screen on Create Fly's stock-keeper frame (UI-DEC-001): a header naming the dimension, one body strip per visible row with the entry's name and distance, a footer.
+- `int VISIBLE_ROWS`
+- `SwitchScreen(SwitchMenu menu, Inventory inventory, Component title)`
+- `SwitchScreen create(Minecraft minecraft, MenuType<SwitchListing> type, int syncId, Inventory inventory, Component title, RegistryFriendlyByteBuf buf)`
+- `void init()`
+- `void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick)`
+- `boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY)`
+- `boolean mouseClicked(MouseButtonEvent event, boolean doubleClick)`
+

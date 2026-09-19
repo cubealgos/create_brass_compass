@@ -3,6 +3,12 @@ package brass_compass.item;
 import brass_compass.BrassCompass;
 import brass_compass.destinations.Destinations;
 import brass_compass.destinations.Entry;
+import brass_compass.ui.SwitchProvider;
+import com.zurrtum.create.foundation.gui.menu.MenuProvider;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.function.Consumer;
@@ -42,6 +48,22 @@ public final class BrassCompassItem extends Item {
 
     public static String dimensionId(Level level) {
         return level.dimension().identifier().toString();
+    }
+
+    /**
+     * Not sneaking, a use anywhere but on a lodestone opens the switch screen (COMPASS-REQ-003);
+     * sneaking is a normal right-click (COMPASS-REQ-014). A lodestone is handled in useOn.
+     */
+    @Override
+    public InteractionResult use(Level level, Player player, InteractionHand hand) {
+        if (player.isShiftKeyDown()) {
+            return InteractionResult.PASS;
+        }
+        if (player instanceof ServerPlayer server) {
+            MenuProvider.openHandledScreen(server, new SwitchProvider(hand));
+            return InteractionResult.SUCCESS_SERVER;
+        }
+        return InteractionResult.SUCCESS;
     }
 
     @Override

@@ -6,7 +6,11 @@ import brass_compass.item.DestinationsCodec;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
+import brass_compass.ui.SwitchListing;
+import brass_compass.ui.SwitchMenu;
 import com.zurrtum.create.AllCreativeModeTabs;
+import com.zurrtum.create.api.registry.CreateRegistries;
+import com.zurrtum.create.foundation.gui.menu.MenuType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.minecraft.world.item.CreativeModeTab;
@@ -36,6 +40,10 @@ public final class BrassCompass implements ModInitializer {
     /** The item (COMPASS-REQ-001): one per stack, born with no entries. */
     public static final Item BRASS_COMPASS = Registry.register(BuiltInRegistries.ITEM, BRASS_COMPASS_KEY,
         new BrassCompassItem(new Item.Properties().setId(BRASS_COMPASS_KEY).stacksTo(1).component(DESTINATIONS, Destinations.EMPTY)));
+
+    /** The switch screen's menu, in Create Fly's menu registry so its screen framework draws it (ARCH-DEC-002). */
+    public static final MenuType<SwitchListing> SWITCH_MENU = Registry.register(CreateRegistries.MENU_TYPE, id("switch"),
+        (MenuType<SwitchListing>) (syncId, inventory, listing) -> new SwitchMenu(syncId, inventory, listing));
 
     public static Identifier id(String path) {
         return Identifier.fromNamespaceAndPath(MOD_ID, path);
