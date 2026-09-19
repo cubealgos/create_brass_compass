@@ -18,8 +18,8 @@ The icon is the item's own needle sprite (frame 00, brass-tinted) scaled up with
 
 ## Acceptance criteria
 
-- [ ] `docs/modrinth/icon.png` (512x512, transparent) and `docs/modrinth/body.md` exist; `docs/modrinth.md` folded into them.
-- [ ] The shot list with captions is in `docs/modrinth/gallery.md`.
+- [x] `docs/modrinth/icon.png` (512x512, transparent, 2 KiB) and `docs/modrinth/body.md` exist; `docs/modrinth.md` folded into them (2026-09-19).
+- [x] The shot list with captions is in `docs/modrinth/gallery.md` (five shots).
 
 ## Constraints and prior findings
 
