@@ -3,3 +3,11 @@
 
 # Every working branch lives here, not as a sibling directory.
 .worktrees/
+
+# Gradle and run directories
+.gradle/
+build/
+run/
+.idea/
+*.iml
+__pycache__/
