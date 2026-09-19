@@ -17,9 +17,10 @@
   "screen.brass_compass.name": "Name",
   "screen.brass_compass.position": "Lodestone at %s, %s, %s",
   "screen.brass_compass.adding": "New entry for this compass",
-  "screen.brass_compass.editing": "Saved on this compass",
+  "screen.brass_compass.editing": "Saved on this compass as %s",
   "screen.brass_compass.confirm": "Save",
   "screen.brass_compass.remove": "Remove",
-  "screen.brass_compass.hint": "Click: point there. Right-click: edit. X: remove.",
-  "screen.brass_compass.hint_empty": "Right-click a lodestone to save it."
+  "screen.brass_compass.hint": "Check: point there. Pencil: edit. X: remove.",
+  "screen.brass_compass.hint_empty": "Right-click a lodestone to save it.",
+  "screen.brass_compass.save": "Save"
 }

@@ -21,22 +21,25 @@ import net.minecraft.world.item.Items;
 /**
  * The switch screen on Create Fly's stock-keeper <em>categories</em> layout (UI-DEC-001): the
  * header names the dimension, the brown panel holds one tan entry row per waypoint with an icon,
- * the name, the distance and the row's X, the grey footer carries the confirm button. The wheel
- * scrolls; a left click on a row chooses it and closes, a right click opens its edit screen, the X
- * removes it (UI-REQ-004, UI-REQ-011). Layout numbers are the category screen's own.
+ * the name, the distance and three actions on the right: a check that chooses and closes, a
+ * pencil that opens the edit screen, and the row's own X that removes (UI-REQ-004, UI-REQ-011).
+ * The wheel scrolls. Layout numbers are the category screen's own.
  */
 public final class SwitchScreen extends AbstractSimiContainerScreen<SwitchMenu> {
     private static final AllGuiTextures HEADER = AllGuiTextures.STOCK_KEEPER_CATEGORY_HEADER;
     private static final AllGuiTextures PANEL = AllGuiTextures.STOCK_KEEPER_CATEGORY;
     private static final AllGuiTextures FOOTER = AllGuiTextures.STOCK_KEEPER_CATEGORY_FOOTER;
     private static final AllGuiTextures ENTRY = AllGuiTextures.STOCK_KEEPER_CATEGORY_ENTRY;
+    private static final AllGuiTextures PENCIL = AllGuiTextures.FROGPORT_EDIT_NAME;
     static final int PANELS = 5;
     static final int ROW_STRIDE = 20;
     private static final int ROW_LEFT = 7;
     private static final int FIRST_ROW_TOP = 25;
     private static final int ROW_ICON_X = 14;
     private static final int ROW_TEXT_X = 35;
-    private static final int ROW_X_GLYPH = 152;
+    private static final int CHECK_X = 116;
+    private static final int PENCIL_X = 136;
+    private static final int X_GLYPH = 152;
     private static final int COLOUR_HEADER = 0xFF3D3C48;
     private static final int COLOUR_ROW = 0xFF656565;
     private static final int COLOUR_ROW_CHOSEN = 0xFF3D3C48;
@@ -121,10 +124,12 @@ public final class SwitchScreen extends AbstractSimiContainerScreen<SwitchMenu> 
         String name = row.present() ? row.name() : row.name() + " " + Component.translatable("screen.brass_compass.lost").getString();
         Component distance = Component.translatable("screen.brass_compass.distance", row.distance());
         int distanceWidth = font.width(distance);
-        int nameRight = x + ROW_X_GLYPH - 4 - distanceWidth - 4;
-        String shown = font.plainSubstrByWidth(name, nameRight - (x + ROW_TEXT_X));
+        int distanceX = x + CHECK_X - 3 - distanceWidth;
+        String shown = font.plainSubstrByWidth(name, distanceX - 4 - (x + ROW_TEXT_X));
         graphics.text(font, Component.literal(shown), x + ROW_TEXT_X, y + 5, colour, false);
-        graphics.text(font, distance, x + ROW_X_GLYPH - 4 - distanceWidth, y + 5, colour, false);
+        graphics.text(font, distance, distanceX, y + 5, colour, false);
+        AllIcons.I_CONFIRM.render(graphics, x + CHECK_X, y + 1);
+        PENCIL.render(graphics, x + PENCIL_X, y + 3);
     }
 
     private String dimensionName() {
@@ -144,22 +149,24 @@ public final class SwitchScreen extends AbstractSimiContainerScreen<SwitchMenu> 
 
     @Override
     public boolean mouseClicked(MouseButtonEvent event, boolean doubleClick) {
+        if (event.button() != 0) {
+            return super.mouseClicked(event, doubleClick);
+        }
         int x = leftPos + ROW_LEFT;
         for (int index = scroll; index < rows().size() && rowTop(index) < listBottom(); index++) {
             int top = rowTop(index);
-            if (event.x() < x || event.x() >= x + ENTRY.getWidth() || event.y() < top || event.y() >= top + ENTRY.getHeight()) {
+            if (event.x() < x + CHECK_X || event.x() >= x + ENTRY.getWidth() || event.y() < top || event.y() >= top + ENTRY.getHeight()) {
                 continue;
             }
-            if (event.button() == 1) {
-                Minecraft.getInstance().gameMode.handleInventoryButtonClick(menu.containerId, SwitchMenu.EDIT + index);
-                return true;
-            }
-            if (event.x() >= x + ROW_X_GLYPH) {
+            double rel = event.x() - x;
+            if (rel >= X_GLYPH) {
                 Minecraft.getInstance().gameMode.handleInventoryButtonClick(menu.containerId, SwitchMenu.REMOVE + index);
-                return true;
+            } else if (rel >= PENCIL_X - 2) {
+                Minecraft.getInstance().gameMode.handleInventoryButtonClick(menu.containerId, SwitchMenu.EDIT + index);
+            } else {
+                Minecraft.getInstance().gameMode.handleInventoryButtonClick(menu.containerId, index);
+                onClose();
             }
-            Minecraft.getInstance().gameMode.handleInventoryButtonClick(menu.containerId, index);
-            onClose();
             return true;
         }
         return super.mouseClicked(event, doubleClick);

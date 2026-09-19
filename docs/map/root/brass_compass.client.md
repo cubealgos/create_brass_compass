@@ -10,15 +10,16 @@ The client entrypoint: screens only.
 - `void onInitializeClient()`
 
 ### `class EditScreen` — `src/main/java/brass_compass/client/EditScreen.java`
-The add/edit screen on Create Fly's frogport layout (UI-DEC-001): the name lives in the blue header strip's text box, the grey body names the place, the confirm arrow sits bottom right and a trash button beside it for an existing entry.
+The add/edit dialog, composed from regions of Create Fly's stock-keeper request window (UI-DEC-001): its cream title strip, two brown panel strips for the place and the state, and the lower footer with the package-address label as the name field and the grey send arrow as the save button.
 - `EditScreen(EditMenu menu, Inventory inventory, Component title)`
 - `EditScreen create(Minecraft minecraft, MenuType<EditListing> type, int syncId, Inventory inventory, Component title, RegistryFriendlyByteBuf buf)`
 - `void init()`
+- `boolean mouseClicked(MouseButtonEvent event, boolean doubleClick)`
 - `boolean keyPressed(KeyEvent event)`
 - `void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick)`
 
 ### `class SwitchScreen` — `src/main/java/brass_compass/client/SwitchScreen.java`
-The switch screen on Create Fly's stock-keeper categories layout (UI-DEC-001): the header names the dimension, the brown panel holds one tan entry row per waypoint with an icon, the name, the distance and the row's X, the grey footer carries the confirm button.
+The switch screen on Create Fly's stock-keeper categories layout (UI-DEC-001): the header names the dimension, the brown panel holds one tan entry row per waypoint with an icon, the name, the distance and three actions on the right: a check that chooses and closes, a pencil that opens the edit screen, and the row's own X that removes (UI-REQ-004, UI-REQ-011).
 - `int PANELS`
 - `int ROW_STRIDE`
 - `SwitchScreen(SwitchMenu menu, Inventory inventory, Component title)`

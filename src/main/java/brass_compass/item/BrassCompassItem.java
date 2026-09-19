@@ -85,6 +85,13 @@ public final class BrassCompassItem extends Item {
         return InteractionResult.SUCCESS;
     }
 
+    /** Glints like a vanilla compass bound to a lodestone: whenever the needle has a target (COMPASS-REQ-016). */
+    @Override
+    public boolean isFoil(ItemStack stack) {
+        LodestoneTracker tracker = stack.get(DataComponents.LODESTONE_TRACKER);
+        return tracker != null && tracker.target().isPresent();
+    }
+
     @Override
     public void inventoryTick(ItemStack stack, ServerLevel level, Entity holder, EquipmentSlot slot) {
         refresh(stack, level);
