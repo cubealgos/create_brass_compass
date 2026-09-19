@@ -2,9 +2,8 @@
 # If it passes on a laptop and fails here, that difference is a real finding rather than a
 # configuration guess.
 #
-# DORMANT: this repository has no remote yet (docs/spec/contracts/platform-matrix.md §7). The file
-# is committed and every command in it is proven locally, so the first remote gets a working
-# pipeline rather than a first draft. Nothing here is exercised by a forge until then.
+# Live since 2026-09-19: the repository's home is git.cubealgos.de/cubealgos/create_brass_compass,
+# whose Woodpecker runs this on every push once the repository is enabled there.
 #
 # Temurin 25 is pinned to the JDK major the platform matrix floors on; the Gradle wrapper fetches
 # its own distribution, so the image needs no Gradle.

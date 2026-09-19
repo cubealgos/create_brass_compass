@@ -4,13 +4,23 @@
   "version": "${version}",
   "name": "Create Fly: Brass Compass",
   "description": "A brass compass that remembers every lodestone it has been shown and points at the one you choose.",
-  "authors": ["create_brass_compass contributors"],
-  "contact": {},
+  "authors": [
+    "Cube Algos"
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/brass-compass",
+    "sources": "https://git.cubealgos.de/cubealgos/create_brass_compass",
+    "issues": "https://git.cubealgos.de/cubealgos/create_brass_compass/issues"
+  },
   "license": "MIT",
   "environment": "*",
   "entrypoints": {
-    "main": ["brass_compass.BrassCompass"],
-    "client": ["brass_compass.client.BrassCompassClient"]
+    "main": [
+      "brass_compass.BrassCompass"
+    ],
+    "client": [
+      "brass_compass.client.BrassCompassClient"
+    ]
   },
   "depends": {
     "fabricloader": ">=0.19.5",
