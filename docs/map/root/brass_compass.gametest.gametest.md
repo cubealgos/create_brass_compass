@@ -15,6 +15,10 @@ BC-6: the save packet, its refusals, renaming a lost entry, removing, and use-on
 - `void removingThroughTheMenuClearsTheChoice(GameTestHelper helper)`
 - `void useOnALodestoneOpensTheEditMenuUnlessSneaking(GameTestHelper helper)`
 
+### `class HandoverGameTest` — `src/gametest/java/brass_compass/gametest/HandoverGameTest.java`
+BC-7: UC-005 hand-over between two players, the empty listing (UI-REQ-005) and the tooltip (COMPASS-REQ-012).
+- `void aHandedOverCompassKeepsEveryEntryAndOnlyTheNewHolderCanChangeIt(GameTestHelper helper)`
+
 ### `class NeedleGameTest` — `src/gametest/java/brass_compass/gametest/NeedleGameTest.java`
 BC-3: the tracker follows the chosen entry of the holder's dimension; a lodestone gone marks the entry lost, back marks it present.
 - `void theNeedleFollowsTheChoiceAndNoticesALostLodestone(GameTestHelper helper)`
