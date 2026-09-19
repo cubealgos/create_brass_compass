@@ -5,6 +5,13 @@
   "name": "Brass Compass game tests",
   "license": "MIT",
   "environment": "server",
-  "entrypoints": { "fabric-gametest": ["brass_compass.gametest.SmokeGameTest"] },
-  "depends": { "brass_compass": "*" }
+  "entrypoints": {
+    "fabric-gametest": [
+      "brass_compass.gametest.SmokeGameTest",
+      "brass_compass.gametest.ComponentGameTest"
+    ]
+  },
+  "depends": {
+    "brass_compass": "*"
+  }
 }

@@ -5,6 +5,10 @@
 Every type with its summary and every non-private constructor, method and constant. The
 signature is the contract; read the source only when the summary is not enough.
 
+### `class ComponentGameTest` — `src/gametest/java/brass_compass/gametest/ComponentGameTest.java`
+BC-2: the destinations component survives an item stack's save and parse round trip.
+- `void theComponentRoundTripsThroughAnItemStack(GameTestHelper helper)`
+
 ### `class SmokeGameTest` — `src/gametest/java/brass_compass/gametest/SmokeGameTest.java`
 M0: the mod loads beside Create Fly and a lodestone can be placed; everything else follows.
 - `void theModLoadsBesideCreateFly(GameTestHelper helper)`
