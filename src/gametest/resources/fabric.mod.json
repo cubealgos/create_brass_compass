@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "brass_compass_gametest",
+  "version": "1.0.0",
+  "name": "Brass Compass game tests",
+  "license": "MIT",
+  "environment": "server",
+  "entrypoints": {
+    "fabric-gametest": [
+      "brass_compass.gametest.SmokeGameTest",
+      "brass_compass.gametest.ComponentGameTest",
+      "brass_compass.gametest.NeedleGameTest",
+      "brass_compass.gametest.RecipeGameTest",
+      "brass_compass.gametest.SwitchGameTest",
+      "brass_compass.gametest.EditGameTest",
+      "brass_compass.gametest.HandoverGameTest"
+    ]
+  },
+  "depends": {
+    "brass_compass": "*"
+  }
+}
