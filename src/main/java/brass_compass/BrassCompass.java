@@ -6,7 +6,11 @@ import brass_compass.item.DestinationsCodec;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
+import com.zurrtum.create.AllCreativeModeTabs;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -39,6 +43,9 @@ public final class BrassCompass implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        // COMPASS-DEC-005: listed in Create Fly's base tab, beside the brass things.
+        CreativeModeTabEvents.modifyOutputEvent(AllCreativeModeTabs.BASE_GROUP).register(output ->
+            output.accept(new ItemStack(BRASS_COMPASS), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS));
         LOGGER.info("Brass Compass ready beside Create Fly");
     }
 }

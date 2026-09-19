@@ -9,7 +9,8 @@
     "fabric-gametest": [
       "brass_compass.gametest.SmokeGameTest",
       "brass_compass.gametest.ComponentGameTest",
-      "brass_compass.gametest.NeedleGameTest"
+      "brass_compass.gametest.NeedleGameTest",
+      "brass_compass.gametest.RecipeGameTest"
     ]
   },
   "depends": {

@@ -13,6 +13,11 @@ BC-2: the destinations component survives an item stack's save and parse round t
 BC-3: the tracker follows the chosen entry of the holder's dimension; a lodestone gone marks the entry lost, back marks it present.
 - `void theNeedleFollowsTheChoiceAndNoticesALostLodestone(GameTestHelper helper)`
 
+### `class RecipeGameTest` — `src/gametest/java/brass_compass/gametest/RecipeGameTest.java`
+BC-4: both recipes of DEC-005 yield one brass compass with no entries, through the server's recipe manager, so a datapack override is what the manager would serve instead.
+- `void aCompassRingedByBrassMakesABrassCompass(GameTestHelper helper)`
+- `void aCompassAndAPrecisionMechanismMakeABrassCompass(GameTestHelper helper)`
+
 ### `class SmokeGameTest` — `src/gametest/java/brass_compass/gametest/SmokeGameTest.java`
 M0: the mod loads beside Create Fly and a lodestone can be placed; everything else follows.
 - `void theModLoadsBesideCreateFly(GameTestHelper helper)`
