@@ -41,3 +41,5 @@ No remote exists; the tag lives locally until one does. `kontor release prepare`
 **Verdict**: approve for `production`. No blocking finding.
 
 **Kevin, 2026-09-19**: approve once Create Fly is pinned to the tested version (the residual note above); the pin is a commit on the release branch before the merge.
+
+**Modrinth, 2026-09-19**: Kevin uploaded 1.0.1+26.2 with the icon, body, gallery and changelog and submitted the project for review. Slug `brass-compass`; the URL goes into the spec and README once the listing is approved.
