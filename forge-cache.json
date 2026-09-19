@@ -1,7 +1,17 @@
 {
   "pulls": {
-    "at": 1789803293.8863108,
+    "at": 1789803309.924659,
     "payload": [
+      {
+        "author": "scheeren",
+        "base": "development",
+        "ci": "pending",
+        "head": "documentation/bc-18-navy-icon",
+        "index": "8",
+        "state": "open",
+        "title": "Modrinth icon on the cubealgos navy badge (BC-18)",
+        "updated": "2026-09-19T07:34:54Z"
+      },
       {
         "author": "scheeren",
         "base": "development",

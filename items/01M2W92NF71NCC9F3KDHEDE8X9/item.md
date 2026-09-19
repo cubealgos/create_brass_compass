@@ -18,9 +18,9 @@ Re-render the Modrinth icon on the cubealgos navy badge (Kevin, 2026-09-19: "use
 
 ## Acceptance criteria
 
-- [ ] `just icon` regenerates `docs/modrinth/icon.png` (512 × 512, under 256 KiB) on the navy badge with the compass sprite.
-- [ ] `docs/modrinth/body.md` describes the icon as the navy badge.
-- [ ] Merged through a Forgejo pull request into `development`; Kevin re-uploads the icon on Modrinth.
+- [x] `just icon` regenerates `docs/modrinth/icon.png` (512 × 512, under 256 KiB) on the navy badge with the compass sprite.
+- [x] `docs/modrinth/body.md` describes the icon as the navy badge.
+- [x] Merged through a Forgejo pull request into `development`; Kevin re-uploads the icon on Modrinth.
 
 ## Constraints and prior findings
 
