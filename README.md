@@ -1,4 +1,4 @@
-# Create Fly: Brass Compass
+# Create: Brass Compass
 
 A brass compass that remembers every lodestone it has been shown and points at the one you choose.
 Right-click a lodestone to save it under a name; right-click anywhere else to pick a destination.
