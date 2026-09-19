@@ -1,7 +1,17 @@
 {
   "pulls": {
-    "at": 1789797283.6097121,
+    "at": 1789798090.847648,
     "payload": [
+      {
+        "author": "scheeren",
+        "base": "development",
+        "ci": "failure",
+        "head": "documentation/bc-16-gallery",
+        "index": "6",
+        "state": "merged",
+        "title": "docs(brass_compass): gallery screenshots kept in the repo with their captions (BC-16)",
+        "updated": "2026-09-19T05:54:47Z"
+      },
       {
         "author": "scheeren",
         "base": "development",
