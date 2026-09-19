@@ -23,3 +23,4 @@ Tested with Minecraft 26.2, Fabric Loader 0.19.5, Fabric API 0.160.0 and Create 
   compasses.
 - Sneaking passes the right-click through, as if the hand were empty.
 - Screens on Create Fly's own frames and textures; every string is a translation key.
+- Declares Create Fly 6.0.9-1, the tested build, as its dependency.
