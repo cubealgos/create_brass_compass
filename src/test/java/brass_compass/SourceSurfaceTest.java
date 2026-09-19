@@ -22,7 +22,7 @@ final class SourceSurfaceTest {
     private static final Path LANG = Path.of("src/main/resources/assets/brass_compass/lang/en_us.json");
     private static final Pattern NETWORKING = Pattern.compile(
         "java\\.net\\.|java\\.nio\\.channels\\.|HttpClient|Socket|URLConnection|HttpURLConnection");
-    private static final Pattern KEY = Pattern.compile("\"((?:item|screen|tooltip)\\.brass_compass\\.[a-z_.]+)\"");
+    private static final Pattern KEY = Pattern.compile("\"((?:item|screen|tooltip|command)\\.brass_compass\\.[a-z_.]+)\"");
 
     @Test
     void noNetworkingTypeIsReferencedByTheMod() throws IOException {

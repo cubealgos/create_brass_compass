@@ -9,6 +9,11 @@ signature is the contract; read the source only when the summary is not enough.
 BC-2: the destinations component survives an item stack's save and parse round trip.
 - `void theComponentRoundTripsThroughAnItemStack(GameTestHelper helper)`
 
+### `class DebugCommandGameTest` — `src/gametest/java/brass_compass/gametest/DebugCommandGameTest.java`
+BC-15: the mock destinations are realistic, and the development-only command is registered and runs on a development server.
+- `void mockDestinationsAreFarApartWithOneLostOneChosenAndOneElsewhere(GameTestHelper helper)`
+- `void theCommandFillsTheHeldCompassOnADevelopmentServer(GameTestHelper helper)`
+
 ### `class EditGameTest` — `src/gametest/java/brass_compass/gametest/EditGameTest.java`
 BC-6: the save packet, its refusals, renaming a lost entry, removing, and use-on-lodestone opening the edit menu.
 - `void theSavePacketWritesOnlyToTheHeldCompassAtALodestone(GameTestHelper helper)`

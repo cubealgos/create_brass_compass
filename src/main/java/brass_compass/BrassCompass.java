@@ -6,7 +6,9 @@ import brass_compass.item.DestinationsCodec;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
+import brass_compass.debug.DebugCommand;
 import brass_compass.network.SavePayload;
+import net.fabricmc.loader.api.FabricLoader;
 import brass_compass.ui.EditListing;
 import brass_compass.ui.EditMenu;
 import brass_compass.ui.SwitchListing;
@@ -76,6 +78,10 @@ public final class BrassCompass implements ModInitializer {
         // UI-REQ-007: the one packet, save an entry for the held compass.
         PayloadTypeRegistry.serverboundPlay().register(SavePayload.TYPE, SavePayload.STREAM_CODEC);
         ServerPlayNetworking.registerGlobalReceiver(SavePayload.TYPE, (payload, context) -> SavePayload.apply(context.player(), payload));
+        // BC-15: the debug command exists in development runs only; a released jar registers no command.
+        if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
+            DebugCommand.register();
+        }
         LOGGER.info("Brass Compass ready beside Create Fly");
     }
 }

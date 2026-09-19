@@ -19,5 +19,6 @@
   "screen.brass_compass.adding": "New lodestone",
   "screen.brass_compass.editing": "Edit lodestone",
   "screen.brass_compass.remove": "Remove",
-  "screen.brass_compass.confirm": "Save"
+  "screen.brass_compass.confirm": "Save",
+  "command.brass_compass.debug.done": "Brass compass filled with %s mock destinations"
 }

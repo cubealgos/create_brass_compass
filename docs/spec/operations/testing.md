@@ -11,6 +11,7 @@ category: "create_brass_compass"
 | Unit | The component's codec, migrations, entry rules (unique position, name limits, current index bounds); no Minecraft needed for the pure parts, which live in a package with no Minecraft imports and a build check like `create_civilization`'s `verifyPureCore` | `src/test` |
 | Game tests | Save at a lodestone, switch, rename, remove, lost and revived, hand-over between two mock players, refusal of an edit for an item not in hand, recipes yield the item, the tracker follows the current entry | `src/gametest`, Loom `runGameTest` |
 | Client | Screens open and close; a manual check in `just client` per release (screens cannot be game-tested headless) | release checklist |
+| Development tool | `/brass_compass debug [count]` fills the held compass with realistic mock destinations (bearings and distances from the player, one chosen, one lost, one in the other dimension) for screen checks and screenshots; registered only when Fabric reports a development environment, so a released jar has no command (Kevin, 2026-09-19, BC-15) | `brass_compass.debug`, `just client` |
 
 `TEST-REQ-001`: every `COMPASS-REQ` and `UI-REQ` names its test in the ticket that implements it.
 `TEST-REQ-002`: a deliberate-break proof for the pure-package check, once.
