@@ -12,3 +12,6 @@ run/
 *.iml
 __pycache__/
 dist/
+
+# macOS Finder droppings
+.DS_Store
