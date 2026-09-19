@@ -21,7 +21,10 @@ import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.Registry;
+import java.util.Optional;
 import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.world.item.component.LodestoneTracker;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
@@ -42,9 +45,16 @@ public final class BrassCompass implements ModInitializer {
             .build());
 
     public static final ResourceKey<Item> BRASS_COMPASS_KEY = ResourceKey.create(Registries.ITEM, id("brass_compass"));
-    /** The item (COMPASS-REQ-001): one per stack, born with no entries. */
+    /**
+     * The item (COMPASS-REQ-001): one per stack, born with no entries and an untracked needle. The
+     * tracker is a default component so a fresh compass equals the creative tab's entry and keeps
+     * the tab's name in its tooltip (vanilla compares components); the tick then only writes it
+     * when the choice changes.
+     */
     public static final Item BRASS_COMPASS = Registry.register(BuiltInRegistries.ITEM, BRASS_COMPASS_KEY,
-        new BrassCompassItem(new Item.Properties().setId(BRASS_COMPASS_KEY).stacksTo(1).component(DESTINATIONS, Destinations.EMPTY)));
+        new BrassCompassItem(new Item.Properties().setId(BRASS_COMPASS_KEY).stacksTo(1)
+            .component(DESTINATIONS, Destinations.EMPTY)
+            .component(DataComponents.LODESTONE_TRACKER, new LodestoneTracker(Optional.empty(), false))));
 
     /** The switch screen's menu, in Create Fly's menu registry so its screen framework draws it (ARCH-DEC-002). */
     public static final MenuType<SwitchListing> SWITCH_MENU = Registry.register(CreateRegistries.MENU_TYPE, id("switch"),

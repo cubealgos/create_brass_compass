@@ -13,6 +13,7 @@ Tested with Minecraft 26.2, Fabric Loader 0.19.5, Fabric API 0.160.0 and Create 
 
 - The switch screen's empty-state text ran past the panel; it now wraps inside it and is centred.
 - The remove X is one red in the list and in the edit dialog; it was brown in one and cream in the other.
+- A fresh brass compass kept losing the "Create" tab line from its tooltip once it had ticked in an inventory; it now matches the creative entry until something is saved on it, as a vanilla compass does.
 
 ## [1.0.0+26.2] - 2026-09-19
 
