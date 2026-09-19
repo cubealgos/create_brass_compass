@@ -7,6 +7,15 @@ signature is the contract; read the source only when the summary is not enough.
 
 The item side: the data component over the pure model, the item, its needle and tooltip.
 
+### `class BrassCompassItem` — `src/main/java/brass_compass/item/BrassCompassItem.java`
+The brass compass (docs/spec/domains/compass.md).
+- `BrassCompassItem(Properties properties)`
+- `Destinations destinationsOf(ItemStack stack)`
+- `String dimensionId(Level level)`
+- `void inventoryTick(ItemStack stack, ServerLevel level, Entity holder, EquipmentSlot slot)`
+- `void refresh(ItemStack stack, ServerLevel level)` — Derives the tracker and the present marks for the level the holder is in; public for the game tests.
+- `void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay display, Consumer<Component> lines, TooltipFlag flag)`
+
 ### `class DestinationsCodec` — `src/main/java/brass_compass/item/DestinationsCodec.java`
 The destinations component's codecs: the on-disk shape of docs/spec/contracts/data-contract.md, and the wire shape for the client.
 - `Codec<Entry> ENTRY`

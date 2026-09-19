@@ -39,6 +39,10 @@ client:
 spec-sync:
     rsync -a --delete "{{vault_spec}}/" docs/spec/
 
+# Make the brass needle frames and item model from vanilla's compass in the Gradle cache.
+needle:
+    python3 tools/needle.py
+
 # Regenerate docs/map.md and docs/map/ from the source.
 map:
     python3 tools/map.py

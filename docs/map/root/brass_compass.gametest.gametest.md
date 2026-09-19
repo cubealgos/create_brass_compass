@@ -9,6 +9,10 @@ signature is the contract; read the source only when the summary is not enough.
 BC-2: the destinations component survives an item stack's save and parse round trip.
 - `void theComponentRoundTripsThroughAnItemStack(GameTestHelper helper)`
 
+### `class NeedleGameTest` — `src/gametest/java/brass_compass/gametest/NeedleGameTest.java`
+BC-3: the tracker follows the chosen entry of the holder's dimension; a lodestone gone marks the entry lost, back marks it present.
+- `void theNeedleFollowsTheChoiceAndNoticesALostLodestone(GameTestHelper helper)`
+
 ### `class SmokeGameTest` — `src/gametest/java/brass_compass/gametest/SmokeGameTest.java`
 M0: the mod loads beside Create Fly and a lodestone can be placed; everything else follows.
 - `void theModLoadsBesideCreateFly(GameTestHelper helper)`
