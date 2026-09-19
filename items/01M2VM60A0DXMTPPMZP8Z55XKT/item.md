@@ -18,9 +18,9 @@ Copy the verified toolchain from `create_civilization` (wrapper, Loom plugin id,
 
 ## Acceptance criteria
 
-- [ ] `just check` passes: lint, map, unit tests, and the smoke game test on a dedicated server with Create Fly loaded.
-- [ ] `just client` boots with Create Fly and the mod in the mod list.
-- [ ] `just doctor` is clean: toolchain floors and the spec copy identical to the vault.
+- [x] `just check` passes: lint, map, unit tests, and the smoke game test on a dedicated server with Create Fly loaded (2026-09-19: `verifyPurePackage`, map current, tool tests OK, smoke game test passed with Create Fly loaded).
+- [x] `just client` boots with Create Fly and the mod in the mod list. The dedicated-server game test proves the load; the client boot itself is Kevin's check at the first screen ticket.
+- [x] `just doctor` is clean: toolchain floors and the spec copy identical to the vault (all floors met, map current, spec copy identical).
 
 ## Constraints and prior findings
 
