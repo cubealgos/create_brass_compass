@@ -34,6 +34,8 @@ public final class SwitchScreen extends AbstractSimiContainerScreen<SwitchMenu> 
     /** Two 8x8 glyphs drawn to the row's own X: same 7-pixel body, same two-pixel stroke, same baseline. */
     private static final Identifier CHECK = BrassCompass.id("textures/gui/check.png");
     private static final Identifier PENCIL = BrassCompass.id("textures/gui/pencil.png");
+    /** The row texture bakes its X in brown; the same glyph is drawn over it in red (Kevin, 2026-09-19: one red X everywhere). */
+    private static final Identifier X = BrassCompass.id("textures/gui/x.png");
     private static final int GLYPH = 8;
     private static final int GLYPH_Y = 4;
     /** The frame's bottom edge: the first two rows of the categories footer, dark line and highlight. */
@@ -63,6 +65,7 @@ public final class SwitchScreen extends AbstractSimiContainerScreen<SwitchMenu> 
     private static final int COLOUR_ON_PANEL = 0xFFEEEEEE;
     private static final int COLOUR_CHECK = 0xFF4FB05A;
     private static final int COLOUR_PENCIL = 0xFFE8B84A;
+    public static final int COLOUR_X = 0xFFC94C4C;
 
     private int scroll;
 
@@ -148,6 +151,7 @@ public final class SwitchScreen extends AbstractSimiContainerScreen<SwitchMenu> 
         graphics.text(font, distance, distanceX, y + 5, colour, false);
         graphics.blit(RenderPipelines.GUI_TEXTURED, CHECK, x + CHECK_X, y + GLYPH_Y, 0, 0, GLYPH, GLYPH, GLYPH, GLYPH, COLOUR_CHECK);
         graphics.blit(RenderPipelines.GUI_TEXTURED, PENCIL, x + PENCIL_X, y + GLYPH_Y, 0, 0, GLYPH, GLYPH, GLYPH, GLYPH, COLOUR_PENCIL);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, X, x + X_GLYPH - 1, y + GLYPH_Y, 0, 0, GLYPH, GLYPH, GLYPH, GLYPH, COLOUR_X);
     }
 
     private String dimensionName() {

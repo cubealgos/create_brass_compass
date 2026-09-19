@@ -22,6 +22,7 @@ The add/edit dialog, composed from regions of Create Fly's stock-keeper request 
 The switch screen on Create Fly's stock-keeper categories layout (UI-DEC-001): the header names the dimension, the brown panel holds one tan entry row per waypoint with an icon, the name, the distance and three actions on the right: a green check that chooses and closes, a yellow pencil that opens the edit screen, and the row's own X that removes (UI-REQ-004, UI-REQ-011).
 - `int PANELS`
 - `int ROW_STRIDE`
+- `int COLOUR_X`
 - `SwitchScreen(SwitchMenu menu, Inventory inventory, Component title)`
 - `SwitchScreen create(Minecraft minecraft, MenuType<SwitchListing> type, int syncId, Inventory inventory, Component title, RegistryFriendlyByteBuf buf)`
 - `void init()`

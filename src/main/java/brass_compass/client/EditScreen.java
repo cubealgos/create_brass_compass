@@ -69,8 +69,7 @@ public final class EditScreen extends AbstractSimiContainerScreen<EditMenu> {
     private static final int GLYPH_PITCH = 14;
     private static final int GLYPH_Y = LABEL_Y + 5;
     private static final int COLOUR_CHECK = 0xFF4FB05A;
-    /** The row X is brown on cream; on the panel brown it is drawn in the label cream instead. */
-    private static final int COLOUR_X = 0xFFF8F8EC;
+    private static final int COLOUR_X = SwitchScreen.COLOUR_X;
     private static final int COLOUR_TITLE = 0xFF4A2D31;
     private static final int COLOUR_ON_PANEL = 0xFFCDBCA8;
     private static final int COLOUR_NAME = 0xFF714A40;
