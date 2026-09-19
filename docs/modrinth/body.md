@@ -4,10 +4,10 @@
 
 | Field | Value |
 |---|---|
-| Name | Create Fly: Brass Compass |
+| Name | Create: Brass Compass |
 | Slug | `brass-compass` |
 | Summary | A brass compass that remembers every lodestone it has been shown and points at the one you choose. |
-| Categories | Utility, Equipment (secondary: Adventure) |
+| Categories | Equipment, Technology, Utility (secondary: Adventure, Game-Mechanics, Management, Optimization) |
 | Licence | MIT |
 | Client side | Required |
 | Server side | Required |
@@ -15,7 +15,7 @@
 | Game versions | 26.2 |
 | Dependencies | Create Fly (required), Fabric API (required) |
 | Icon | `icon.png` in this folder: the compass on the cubealgos navy badge (`just icon` regenerates it) |
-| Links | Source `https://git.cubealgos.de/cubealgos/create_brass_compass` · Issues `https://github.com/cubealgos/create_brass_compass/issues` · Mirror `https://github.com/cubealgos/create_brass_compass` |
+| Links | Source `https://github.com/cubealgos/create_brass_compass` · Issues `https://github.com/cubealgos/create_brass_compass/issues` · Origin `https://git.cubealgos.de/cubealgos/create_brass_compass` |
 
 ## Version settings
 
@@ -58,4 +58,4 @@ Minecraft 26.2, Fabric Loader 0.19.5 or newer, Fabric API 0.160.0 or newer, and 
 
 ### Support
 
-Through the issue tracker only (https://github.com/cubealgos/create_brass_compass/issues), as time allows. Source on Forgejo, mirrored to GitHub. Include your Minecraft, Fabric and Create Fly versions, the mod version from the jar name, and the steps that show the problem. MIT licensed.
+Through the issue tracker only (https://github.com/cubealgos/create_brass_compass/issues), as time allows. Source on GitHub, mirrored from the cubealgos Forgejo. Include your Minecraft, Fabric and Create Fly versions, the mod version from the jar name, and the steps that show the problem. MIT licensed.
