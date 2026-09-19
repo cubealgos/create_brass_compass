@@ -9,20 +9,20 @@ created_at: 2026-09-19T01:23:36Z
 
 ## Goal
 
-<fill this in before committing>
+The two screens on Create Fly's framework: choose a destination, save and edit a lodestone, with every edit validated by the server.
 
 ## Scope
 
-<fill this in before committing>
+Interactions and the switch screen (BC-5), the add/edit screen and the save packet (BC-6).
 
 ## Exit criteria
 
-<fill this in before committing>
+Game tests for choosing, saving, renaming, removing and refusing an edit for an item not in hand; Kevin's client check of both screens.
 
 ## Tickets
 
-<fill this in before committing>
+BC-5, BC-6
 
 ## Depends on
 
-<fill this in before committing>
+M1
