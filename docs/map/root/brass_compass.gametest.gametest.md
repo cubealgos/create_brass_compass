@@ -22,3 +22,8 @@ BC-4: both recipes of DEC-005 yield one brass compass with no entries, through t
 M0: the mod loads beside Create Fly and a lodestone can be placed; everything else follows.
 - `void theModLoadsBesideCreateFly(GameTestHelper helper)`
 
+### `class SwitchGameTest` — `src/gametest/java/brass_compass/gametest/SwitchGameTest.java`
+BC-5: the switch listing shows the holder's dimension only, choosing a row moves the needle, an out-of-range row is ignored, sneaking passes through.
+- `void theListingIsPerDimensionAndChoosingARowMovesTheNeedle(GameTestHelper helper)`
+- `void sneakingPassesTheUseThrough(GameTestHelper helper)`
+

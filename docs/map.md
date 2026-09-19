@@ -14,11 +14,12 @@ signature page before calling into a package you did not write.
 | package | project | types | what |
 |---|---|---|---|
 | `brass_compass` | root | BrassCompass |  |
-| `brass_compass.client` | root | BrassCompassClient |  |
+| `brass_compass.client` | root | BrassCompassClient, SwitchScreen |  |
 | `brass_compass.destinations` | root | Destinations, Entry, Names | The pure part: a compass's entries and the choice per dimension, with no Minecraft imports (docs/spec/contracts/data-contract.md). |
 | `brass_compass.item` | root | BrassCompassItem, DestinationsCodec | The item side: the data component over the pure model, the item, its needle and tooltip. |
+| `brass_compass.ui` | root | SwitchListing, SwitchMenu, SwitchProvider | The two screens' server halves (docs/spec/domains/ui.md): listings, menus on Create Fly's framework, providers. |
 | `brass_compass.destinations` | root (test) | DestinationsTest |  |
-| `brass_compass.gametest` | root (gametest) | ComponentGameTest, NeedleGameTest, RecipeGameTest, SmokeGameTest |  |
+| `brass_compass.gametest` | root (gametest) | ComponentGameTest, NeedleGameTest, RecipeGameTest, SmokeGameTest, SwitchGameTest |  |
 
 | build script | what |
 |---|---|

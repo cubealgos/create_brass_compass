@@ -12,6 +12,7 @@ The mod's server-and-common entrypoint: registers the item, its component, the m
 - `DataComponentType<Destinations> DESTINATIONS` — What a brass compass remembers (docs/spec/contracts/data-contract.md).
 - `ResourceKey<Item> BRASS_COMPASS_KEY`
 - `Item BRASS_COMPASS` — The item (COMPASS-REQ-001): one per stack, born with no entries.
+- `MenuType<SwitchListing> SWITCH_MENU` — The switch screen's menu, in Create Fly's menu registry so its screen framework draws it (ARCH-DEC-002).
 - `Identifier id(String path)`
 - `void onInitialize()`
 

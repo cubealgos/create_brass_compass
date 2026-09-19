@@ -89,7 +89,8 @@ public record Destinations(int version, List<Entry> entries, Map<String, Integer
 
     /** Chooses an entry for its own dimension (COMPASS-REQ-015); an index in another dimension is refused. */
     public Destinations choose(String dimension, int index) {
-        if (readOnly() || !valid(index) || !entries.get(index).dimension().equals(dimension)) {
+        if (readOnly() || !valid(index) || !entries.get(index).dimension().equals(dimension)
+            || Integer.valueOf(index).equals(current.get(dimension))) {
             return this;
         }
         Map<String, Integer> chosen = new TreeMap<>(current);
