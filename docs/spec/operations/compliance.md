@@ -16,7 +16,7 @@ A distributed product carries the same obligations, landing in different places
 | Impressumspflicht | Attaches to a public web presence; there is none beyond the platform pages. Revisit if a site exists. |
 | Licence and notices | MIT (`decisions/DEC-003-licence.md`); `NOTICE` credits Create Fly (CC0), Create (MIT), Fabric (Apache-2.0). |
 | Supply chain and release integrity | Builds from a tagged commit with a pinned wrapper and pinned dependencies; the release checksum is in the release notes; no signing at 1.0 (open below). |
-| Vulnerability disclosure | The public issue tracker, with a note in `README.md` asking for private disclosure by e-mail for anything exploitable server-side. |
+| Vulnerability disclosure | The public issue tracker only; no private channel (Kevin, 2026-09-19: no e-mail address is published). `README.md` and `SUPPORT.md` say so. |
 | Server trust boundary | Every client message is validated against the item the player holds (`COMPASS-REQ-007`, `UI-REQ-007`); names are stripped of formatting; positions must hold a lodestone unless the entry exists. A client cannot write arbitrary item data. |
 | AI Act, GoBD, sector regulation | Not applicable: no AI component, no financial records, no regulated sector. |
 
