@@ -1,7 +1,27 @@
 {
   "pulls": {
-    "at": 1789792217.247017,
+    "at": 1789793374.6301818,
     "payload": [
+      {
+        "author": "scheeren",
+        "base": "development",
+        "ci": "",
+        "head": "chore/bc-14-github-issues",
+        "index": "3",
+        "state": "merged",
+        "title": "chore(brass_compass): the issue tracker is the GitHub mirror's; every issues link points there (BC-14)",
+        "updated": "2026-09-19T04:32:40Z"
+      },
+      {
+        "author": "scheeren",
+        "base": "development",
+        "ci": "",
+        "head": "chore/bc-14-github-issues",
+        "index": "2",
+        "state": "merged",
+        "title": "chore(brass_compass): the issue tracker is the GitHub mirror's; every issues link points there (BC-14)",
+        "updated": "2026-09-19T04:32:38Z"
+      },
       {
         "author": "scheeren",
         "base": "development",
@@ -10,7 +30,7 @@
         "index": "1",
         "state": "merged",
         "title": "chore(brass_compass): public home: Forgejo, GitHub mirror and Modrinth links; forge merge templates (BC-13)",
-        "updated": "2026-09-19T04:20:35Z"
+        "updated": "2026-09-19T04:32:38Z"
       }
     ]
   }
