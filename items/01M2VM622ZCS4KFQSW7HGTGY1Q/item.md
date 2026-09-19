@@ -12,6 +12,10 @@ created_at: 2026-09-19T01:23:38Z
 
 `TEST-REQ-001`: a table in the ticket mapping every `COMPASS-REQ` and `UI-REQ` to its test; hand-over between two mock players (`UC-005`); `COMP-REQ-001` no network call (code review line recorded). The client checklist run once by Kevin.
 
+## Approach
+
+One table in the ticket, one test class per domain, two mock server players for the hand-over; the network claim is a code-review line because the mod opens no socket anywhere.
+
 ## Acceptance criteria
 
 - [ ] Every requirement has a named test or a recorded reason it cannot be tested headless.

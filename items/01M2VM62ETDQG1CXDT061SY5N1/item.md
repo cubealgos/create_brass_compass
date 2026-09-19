@@ -12,6 +12,10 @@ created_at: 2026-09-19T01:23:39Z
 
 `REL-REQ-001..002`: `just release` from a clean checkout at the tag, checksum in the notes, platform pages stating Create Fly as required, `SUPPORT.md`, the disclosure note in `README.md` (`operations/compliance.md`).
 
+## Approach
+
+`just release` builds from a tag on `production`; the checksum goes into the release notes; the platform pages are Kevin's; `SUPPORT.md` says issues only.
+
 ## Acceptance criteria
 
 - [ ] Tag `v1.0.0+26.2` on `production`, jar and checksum attached.

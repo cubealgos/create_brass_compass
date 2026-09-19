@@ -12,6 +12,10 @@ created_at: 2026-09-19T01:23:36Z
 
 The repository as `docs/spec/04-architecture.md` `ARCH-DEC-001` describes it: one Gradle project on Loom 1.17 with Create Fly and Fabric API, main and client entrypoints, MIT licence and `NOTICE`, `CLAUDE.md` routing, `justfile`, `tools/` (doctor, map), `docs/spec/` as a copy of the vault, a dormant CI file, and a smoke game test proving the mod loads beside Create Fly.
 
+## Approach
+
+Copy the verified toolchain from `create_civilization` (wrapper, Loom plugin id, Modrinth repository with `exclusiveContent`) into one Gradle project; keep the fleet's recipe names; prove loading with a game test on a dedicated server.
+
 ## Acceptance criteria
 
 - [ ] `just check` passes: lint, map, unit tests, and the smoke game test on a dedicated server with Create Fly loaded.

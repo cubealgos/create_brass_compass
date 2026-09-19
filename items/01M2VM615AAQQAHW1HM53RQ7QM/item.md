@@ -12,6 +12,10 @@ created_at: 2026-09-19T01:23:37Z
 
 Two data recipes (`DEC-005`): shaped compass ringed by eight `create:brass_ingot`; shapeless compass plus `create:precision_mechanism`. The item joins Create Fly's base creative tab beside the brass items (`COMPASS-DEC-005`).
 
+## Approach
+
+Two recipe JSON files under `data/brass_compass/recipe/`; the creative tab entry through Fabric's `ItemGroupEvents.modifyEntriesEvent` on Create Fly's base tab key, found by reading its jar.
+
 ## Acceptance criteria
 
 - [ ] Game test: both recipes craft one brass compass with no entries.

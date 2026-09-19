@@ -12,6 +12,10 @@ created_at: 2026-09-19T01:23:37Z
 
 `brass_compass.destinations`: `Entry` (dimension, position, name, present), `Destinations` (entries in order, chosen index per dimension, version), rules `COMPASS-REQ-010` (unique position), `COMPASS-FAIL-002` (name limits), `DATA-REQ-001..003` (version, forward migrations, malformed read as empty). The Fabric side registers the data component `brass_compass:destinations` with a codec over the pure model.
 
+## Approach
+
+A record-based model in a package with no Minecraft imports, checked by `verifyPurePackage`; a Fabric-side `DataComponentType` whose codec maps to and from the model, with `version` read first so a newer version short-circuits into a read-only wrapper.
+
 ## Acceptance criteria
 
 - [ ] Unit tests: add, rename, remove, choose per dimension, duplicate position returns the existing entry, name truncation, codec round trip, newer version read-only (`DATA-REQ-001`).
