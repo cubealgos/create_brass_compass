@@ -14,7 +14,7 @@
 | Loaders | Fabric |
 | Game versions | 26.2 |
 | Dependencies | Create Fly (required), Fabric API (required) |
-| Icon | `icon.png` in this folder: the compass on the round blueprint badge Create add-ons share (`just icon` regenerates it) |
+| Icon | `icon.png` in this folder: the compass on the cubealgos navy badge (`just icon` regenerates it) |
 | Links | Source `https://git.cubealgos.de/cubealgos/create_brass_compass` · Issues `https://github.com/cubealgos/create_brass_compass/issues` · Mirror `https://github.com/cubealgos/create_brass_compass` |
 
 ## Version settings
