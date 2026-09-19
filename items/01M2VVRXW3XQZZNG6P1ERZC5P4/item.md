@@ -18,9 +18,9 @@ Wrap the empty-state text with the font's own line splitting to the panel's inne
 
 ## Acceptance criteria
 
-- [ ] The empty state wraps inside the panel (client check by Kevin on the hotfix build).
-- [ ] Version 1.0.1+26.2, CHANGELOG.md entry, `just check` green, `just release` at tag `v1.0.1+26.2` wrote `dist/`.
-- [ ] Merged into `production` and back into `development`; `dist/` handed to Kevin.
+- [x] The empty state wraps inside the panel (Kevin's client check on the hotfix build, 2026-09-19: "seems like it all works now"). Two more findings from the same playtest fixed here: the remove X is one red in both screens; a fresh compass keeps its creative tab line in the tooltip (the untracked tracker is a default component, so the stack equals the tab entry).
+- [x] Version 1.0.1+26.2, CHANGELOG.md entries, `just check` green (12 game tests), `just release` at tag `v1.0.1+26.2` (83a1e11) wrote `dist/`, SHA-256 `9ea085c654e55567ced772743dacfc226a59dacc45de17fcfcbe13f927935159`.
+- [x] Merged into `production` and back into `development` at finish; `dist/` copied to the main checkout for Kevin, 2026-09-19.
 
 ## Constraints and prior findings
 
