@@ -14,7 +14,7 @@
 | Loaders | Fabric |
 | Game versions | 26.2 |
 | Dependencies | Create Fly (required), Fabric API (required) |
-| Icon | `icon.png` in this folder |
+| Icon | `icon.png` in this folder: the compass on the round blueprint badge Create add-ons share (`just icon` regenerates it) |
 | Links | none yet (no public repository); support and reports through the Modrinth page's issue link once a tracker exists |
 
 ## Version settings

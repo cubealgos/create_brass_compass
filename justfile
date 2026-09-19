@@ -77,3 +77,7 @@ release:
     (cd dist && shasum -a 256 "create_brass_compass-$version.jar" > "create_brass_compass-$version.jar.sha256")
     python3 tools/release_notes.py "$version" > "dist/release-notes-$version.md"
     echo "release: dist/ holds the jar, its SHA-256 and the notes for $tag"
+
+# Render the Modrinth icon on the blueprint badge Create add-ons share.
+icon:
+    python3 tools/icon.py
