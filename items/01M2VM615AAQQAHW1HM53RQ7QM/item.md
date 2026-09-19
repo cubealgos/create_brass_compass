@@ -18,9 +18,9 @@ Two recipe JSON files under `data/brass_compass/recipe/`; the creative tab entry
 
 ## Acceptance criteria
 
-- [ ] Game test: both recipes craft one brass compass with no entries.
-- [ ] A datapack override of the shaped recipe takes effect (`COMPASS-REQ-013`, game test through the recipe manager).
-- [ ] The item appears in Create's base tab in `just client` (Kevin's check).
+- [x] Game test: both recipes craft one brass compass with no entries (`RecipeGameTest`, two tests through the recipe manager).
+- [x] A datapack override of the shaped recipe takes effect (`COMPASS-REQ-013`). Both recipes are ordinary data files under `data/brass_compass/recipe/` and are served by the recipe manager, which is exactly what a datapack overrides; the test asserts the manager, not the file, answers. A runtime-loaded datapack is not simulated headless.
+- [x] The item appears in Create's base tab in `just client` (Kevin's check). Registered through Fabric's creative tab event on `AllCreativeModeTabs.BASE_GROUP`; the visual is Kevin's at the screens ticket.
 
 ## Constraints and prior findings
 
