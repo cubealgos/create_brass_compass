@@ -3,6 +3,7 @@ package brass_compass.gametest;
 import brass_compass.BrassCompass;
 import brass_compass.destinations.Destinations;
 import brass_compass.item.BrassCompassItem;
+import brass_compass.ui.EditMenu;
 import brass_compass.ui.SwitchListing;
 import brass_compass.ui.SwitchMenu;
 import brass_compass.ui.SwitchProvider;
@@ -50,6 +51,15 @@ public final class SwitchGameTest {
         helper.assertTrue(player.getItemInHand(InteractionHand.MAIN_HAND).get(DataComponents.LODESTONE_TRACKER).target().orElseThrow().pos().equals(home), "the needle points home");
         helper.assertTrue(!menu.clickMenuButton(player, 9), "an out-of-range row is ignored");
         helper.assertTrue(!menu.clickMenuButton(player, 0), "choosing the chosen row again changes nothing");
+        helper.assertTrue(!menu.clickMenuButton(player, SwitchMenu.EDIT + 1000), "an unknown action is ignored");
+
+        helper.assertTrue(menu.clickMenuButton(player, SwitchMenu.EDIT + 1), "edit on a row opens its edit screen");
+        helper.assertTrue(player.containerMenu instanceof EditMenu edit && edit.listing().pos().equals(mine), "for that entry's lodestone: " + player.containerMenu);
+        helper.assertTrue(menu.clickMenuButton(player, SwitchMenu.REMOVE + 1), "remove on a row is applied");
+        Destinations removed = BrassCompassItem.destinationsOf(player.getItemInHand(InteractionHand.MAIN_HAND));
+        helper.assertTrue(removed.entries().size() == 2 && removed.indicesIn(dim).size() == 1, "the mine is gone, home and the nether entry stay: " + removed);
+        helper.assertTrue(removed.chosen(dim).orElseThrow().name().equals("Home"), "the choice followed the shift");
+        helper.assertTrue(player.containerMenu instanceof SwitchMenu reopened && reopened.listing().rows().size() == 1, "the list was reopened with one row: " + player.containerMenu);
 
         player.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
         helper.assertTrue(!menu.clickMenuButton(player, 1), "with the compass gone from the hand, nothing is applied");

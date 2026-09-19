@@ -49,8 +49,8 @@ sends remove. 4. The server applies and closes.
 
 ### `UI-UC-002` — the switch screen
 Actor: holder. 1. The screen shows one row per entry: name, dimension, distance when in the same
-dimension, a marker on the current one, a lost marker. 2. Clicking the row chooses. 3. The edit
-icon opens `UI-UC-001`. 4. With no entries the body says so.
+dimension, a marker on the current one, a lost marker. 2. Clicking the row chooses; its X removes.
+3. Right-clicking the row opens `UI-UC-001`. 4. With no entries the body says so.
 
 ## 5. Requirements
 
@@ -61,6 +61,7 @@ icon opens `UI-UC-001`. 4. With no entries the body says so.
 | `UI-REQ-010` | Each row shall show the entry's name and its distance from the holder in blocks. | Should | `UI-DEC-002` |
 | `UI-REQ-003` | The switch screen shall mark the current entry and every lost entry distinctly. | Must | `UC-004` |
 | `UI-REQ-004` | **When** a row is clicked, the system shall choose it through a menu button click and close the screen. | Must | `UC-002` |
+| `UI-REQ-011` | **When** a row's X is clicked, the system shall remove that entry through a menu button click and reopen the list; **when** a row is right-clicked, the system shall open the edit screen for that entry. | Must | `UI-DEC-001` |
 | `UI-REQ-005` | **While** the compass has no entries, the switch screen shall say so and show no rows. | Must | Multiplicity |
 | `UI-REQ-006` | The edit screen shall offer a name field of at most 32 characters, confirm, and remove for an existing entry. | Must | `UC-003` |
 | `UI-REQ-007` | **When** confirm is pressed, the client shall send one packet with the entry, and the server shall apply it only if the item in hand matches (`COMPASS-REQ-007`). | Must | Unwanted |
@@ -89,6 +90,13 @@ icon opens `UI-UC-001`. 4. With no entries the body says so.
   the holder's dimension). Remove is final, no confirmation (the author's call: a removed entry is
   one right-click from being saved again). **Cost if wrong:** a player looking for a nether entry
   from the overworld does not see it and may save it twice.
-- `UI-DEC-001` — **Stock-keeper list layout for the switch screen** (as decided for
-  `create_civilization`'s job board, `DEC-014` there): header, scrolling rows, footer, icon buttons.
-  **Cost if wrong:** the textures are Create Fly's; a resource pack changing them changes us.
+- `UI-DEC-001` — **Create Fly's own list and edit layouts, not hand-placed text on a frame**
+  (Kevin, 2026-09-19, superseding the stock-keeper request-window choice of the same day). The
+  switch screen is the stock keeper's *categories* screen: its blue header, brown panel, tan entry
+  row texture (icon, name, distance, the row's X), grey footer with the confirm button, and its own
+  spacing numbers. The add/edit screen is the frogport (package port) screen: the name box in the
+  blue header strip, the grey body naming the place, confirm bottom right, trash beside it for an
+  existing entry. Create's screens are bound to their menus and cannot be subclassed; what is
+  reused is `AllGuiTextures`, `IconButton`, `EditBox` with Create's no-shadow font, and the layout
+  numbers read from those screens. **Cost if wrong:** the textures are Create Fly's; a resource
+  pack changing them changes us.

@@ -9,6 +9,12 @@ signature is the contract; read the source only when the summary is not enough.
 BC-2: the destinations component survives an item stack's save and parse round trip.
 - `void theComponentRoundTripsThroughAnItemStack(GameTestHelper helper)`
 
+### `class EditGameTest` — `src/gametest/java/brass_compass/gametest/EditGameTest.java`
+BC-6: the save packet, its refusals, renaming a lost entry, removing, and use-on-lodestone opening the edit menu.
+- `void theSavePacketWritesOnlyToTheHeldCompassAtALodestone(GameTestHelper helper)`
+- `void removingThroughTheMenuClearsTheChoice(GameTestHelper helper)`
+- `void useOnALodestoneOpensTheEditMenuUnlessSneaking(GameTestHelper helper)`
+
 ### `class NeedleGameTest` — `src/gametest/java/brass_compass/gametest/NeedleGameTest.java`
 BC-3: the tracker follows the chosen entry of the holder's dimension; a lodestone gone marks the entry lost, back marks it present.
 - `void theNeedleFollowsTheChoiceAndNoticesALostLodestone(GameTestHelper helper)`

@@ -9,9 +9,18 @@ signature is the contract; read the source only when the summary is not enough.
 The client entrypoint: screens only.
 - `void onInitializeClient()`
 
+### `class EditScreen` — `src/main/java/brass_compass/client/EditScreen.java`
+The add/edit screen on Create Fly's frogport layout (UI-DEC-001): the name lives in the blue header strip's text box, the grey body names the place, the confirm arrow sits bottom right and a trash button beside it for an existing entry.
+- `EditScreen(EditMenu menu, Inventory inventory, Component title)`
+- `EditScreen create(Minecraft minecraft, MenuType<EditListing> type, int syncId, Inventory inventory, Component title, RegistryFriendlyByteBuf buf)`
+- `void init()`
+- `boolean keyPressed(KeyEvent event)`
+- `void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick)`
+
 ### `class SwitchScreen` — `src/main/java/brass_compass/client/SwitchScreen.java`
-The switch screen on Create Fly's stock-keeper frame (UI-DEC-001): a header naming the dimension, one body strip per visible row with the entry's name and distance, a footer.
-- `int VISIBLE_ROWS`
+The switch screen on Create Fly's stock-keeper categories layout (UI-DEC-001): the header names the dimension, the brown panel holds one tan entry row per waypoint with an icon, the name, the distance and the row's X, the grey footer carries the confirm button.
+- `int PANELS`
+- `int ROW_STRIDE`
 - `SwitchScreen(SwitchMenu menu, Inventory inventory, Component title)`
 - `SwitchScreen create(Minecraft minecraft, MenuType<SwitchListing> type, int syncId, Inventory inventory, Component title, RegistryFriendlyByteBuf buf)`
 - `void init()`
