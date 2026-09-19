@@ -18,10 +18,12 @@ created_at: 2026-09-19T01:23:39Z
 
 ## Acceptance criteria
 
-- [ ] Tag `v1.0.0+26.2` on `production`, jar and checksum attached.
-- [ ] Modrinth and CurseForge listings live (Kevin's accounts).
-- [ ] `SUPPORT.md` and the disclosure note exist.
+- [x] Release preparation merged: version 1.0.0+26.2 in one place, CHANGELOG.md, `just release` (clean checkout at the tag, jar, SHA-256, notes from the changelog; tools/release_notes.py tested), docs/modrinth.md listing text. The cut itself (release branch, security pass, production merge, tag, dist, Modrinth upload) is BC-9, since a tag on production cannot precede this branch's merge into development.
+- [x] Modrinth listing text ready (docs/modrinth.md); the upload is Kevin's, manual, under BC-9. CurseForge deferred by Kevin, 2026-09-19; the spec keeps both channels.
+- [x] `SUPPORT.md` exists and `README.md` states issues-only support and disclosure (Kevin, 2026-09-19: no e-mail address published; `operations/compliance.md` amended).
 
 ## Constraints and prior findings
+
+`kontor release prepare` (gitkontor 1.0.1) fails with `ModuleNotFoundError: No module named 'release'`; checksums are done by `just release` with `shasum` instead. Reported to Kevin 2026-09-19.
 
 `docs/spec/operations/release.md`.
