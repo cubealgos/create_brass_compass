@@ -30,7 +30,11 @@ public final class SwitchScreen extends AbstractSimiContainerScreen<SwitchMenu> 
     private static final AllGuiTextures HEADER = AllGuiTextures.STOCK_KEEPER_CATEGORY_HEADER;
     private static final AllGuiTextures PANEL = AllGuiTextures.STOCK_KEEPER_CATEGORY;
     private static final AllGuiTextures ENTRY = AllGuiTextures.STOCK_KEEPER_CATEGORY_ENTRY;
+    /** Two 8x8 glyphs drawn to the row's own X: same 7-pixel body, same two-pixel stroke, same baseline. */
+    private static final Identifier CHECK = BrassCompass.id("textures/gui/check.png");
     private static final Identifier PENCIL = BrassCompass.id("textures/gui/pencil.png");
+    private static final int GLYPH = 8;
+    private static final int GLYPH_Y = 4;
     /** The frame's bottom edge: the first two rows of the categories footer, dark line and highlight. */
     private static final int EDGE_U = 32;
     private static final int EDGE_V = 80;
@@ -41,9 +45,14 @@ public final class SwitchScreen extends AbstractSimiContainerScreen<SwitchMenu> 
     private static final int FIRST_ROW_TOP = 25;
     private static final int ROW_ICON_X = 14;
     private static final int ROW_TEXT_X = 35;
-    private static final int CHECK_X = 116;
-    private static final int PENCIL_X = 135;
-    private static final int X_GLYPH = 152;
+    /** Glyph columns inside the row: the X sits at 159..165, the others keep its 14-pixel pitch. */
+    private static final int CHECK_X = 131;
+    private static final int PENCIL_X = 145;
+    private static final int X_GLYPH = 159;
+    /** Click bands, each centred on its glyph. */
+    private static final int CHECK_HIT = CHECK_X - 4;
+    private static final int PENCIL_HIT = PENCIL_X - 4;
+    private static final int X_HIT = X_GLYPH - 4;
     private static final int COLOUR_HEADER = 0xFF3D3C48;
     private static final int COLOUR_ROW = 0xFF656565;
     private static final int COLOUR_ROW_CHOSEN = 0xFF3D3C48;
@@ -125,12 +134,12 @@ public final class SwitchScreen extends AbstractSimiContainerScreen<SwitchMenu> 
         String name = row.present() ? row.name() : row.name() + " " + Component.translatable("screen.brass_compass.lost").getString();
         Component distance = Component.translatable("screen.brass_compass.distance", row.distance());
         int distanceWidth = font.width(distance);
-        int distanceX = x + CHECK_X - 3 - distanceWidth;
+        int distanceX = x + CHECK_HIT - 4 - distanceWidth;
         String shown = font.plainSubstrByWidth(name, distanceX - 4 - (x + ROW_TEXT_X));
         graphics.text(font, Component.literal(shown), x + ROW_TEXT_X, y + 5, colour, false);
         graphics.text(font, distance, distanceX, y + 5, colour, false);
-        AllIcons.I_CONFIRM.render(graphics, x + CHECK_X, y + 1, COLOUR_CHECK);
-        graphics.blit(RenderPipelines.GUI_TEXTURED, PENCIL, x + PENCIL_X, y + 1, 0, 0, 16, 16, 16, 16, COLOUR_PENCIL);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, CHECK, x + CHECK_X, y + GLYPH_Y, 0, 0, GLYPH, GLYPH, GLYPH, GLYPH, COLOUR_CHECK);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, PENCIL, x + PENCIL_X, y + GLYPH_Y, 0, 0, GLYPH, GLYPH, GLYPH, GLYPH, COLOUR_PENCIL);
     }
 
     private String dimensionName() {
@@ -156,13 +165,13 @@ public final class SwitchScreen extends AbstractSimiContainerScreen<SwitchMenu> 
         int x = leftPos + ROW_LEFT;
         for (int index = scroll; index < rows().size() && rowTop(index) < listBottom(); index++) {
             int top = rowTop(index);
-            if (event.x() < x + CHECK_X || event.x() >= x + ENTRY.getWidth() || event.y() < top || event.y() >= top + ENTRY.getHeight()) {
+            if (event.x() < x + CHECK_HIT || event.x() >= x + ENTRY.getWidth() || event.y() < top || event.y() >= top + ENTRY.getHeight()) {
                 continue;
             }
             double rel = event.x() - x;
-            if (rel >= X_GLYPH) {
+            if (rel >= X_HIT) {
                 Minecraft.getInstance().gameMode.handleInventoryButtonClick(menu.containerId, SwitchMenu.REMOVE + index);
-            } else if (rel >= PENCIL_X - 2) {
+            } else if (rel >= PENCIL_HIT) {
                 Minecraft.getInstance().gameMode.handleInventoryButtonClick(menu.containerId, SwitchMenu.EDIT + index);
             } else {
                 Minecraft.getInstance().gameMode.handleInventoryButtonClick(menu.containerId, index);

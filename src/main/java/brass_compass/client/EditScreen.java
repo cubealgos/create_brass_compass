@@ -48,11 +48,18 @@ public final class EditScreen extends AbstractSimiContainerScreen<EditMenu> {
     private static final int BOTTOM_V = 148;
     private static final int BOTTOM_H = 12;
     private static final int HEIGHT = TITLE_H + PANELS * PANEL_H + BOTTOM_H;
-    /** The package-address label with its outline, texture columns 29..155, rows 119..136. */
-    private static final int LABEL_U = 29;
+    /**
+     * The package-address label without its pointed string end: texture columns 37..155, rows
+     * 119..136, given a left cap built from its own right outline (column 155) and corner pixels.
+     */
+    private static final int LABEL_U = 37;
     private static final int LABEL_V = 119;
-    private static final int LABEL_W = 127;
+    private static final int LABEL_BODY_W = 119;
+    private static final int LABEL_CAP_W = 2;
+    private static final int LABEL_W = LABEL_CAP_W + LABEL_BODY_W;
     private static final int LABEL_H = 18;
+    private static final int OUTLINE_U = 155;
+    private static final int CORNER_U = 154;
     private static final int LABEL_Y = TITLE_H + 30;
     private static final int GAP = 6;
     private static final int BUTTON = 18;
@@ -162,7 +169,13 @@ public final class EditScreen extends AbstractSimiContainerScreen<EditMenu> {
         graphics.item(new ItemStack(Items.LODESTONE), placeX, panelTop + 6);
         graphics.text(font, place, placeX + 16 + GAP, panelTop + 10, COLOUR_ON_PANEL, false);
 
-        region(graphics, atlas, groupLeft(), topPos + LABEL_Y, LABEL_U, LABEL_V, LABEL_W, LABEL_H);
+        int labelX = groupLeft();
+        int labelY = topPos + LABEL_Y;
+        region(graphics, atlas, labelX + LABEL_CAP_W, labelY, LABEL_U, LABEL_V, LABEL_BODY_W, LABEL_H);
+        region(graphics, atlas, labelX, labelY + 2, OUTLINE_U, LABEL_V + 2, 1, LABEL_H - 4);
+        region(graphics, atlas, labelX + 1, labelY + 1, CORNER_U, LABEL_V + 1, 1, 1);
+        region(graphics, atlas, labelX + 1, labelY + LABEL_H - 2, CORNER_U, LABEL_V + LABEL_H - 2, 1, 1);
+        region(graphics, atlas, labelX + 1, labelY + 2, LABEL_U, LABEL_V + 2, 1, LABEL_H - 4);
         if (nameBox != null && nameBox.getValue().isBlank()) {
             Component placeholder = Component.translatable("screen.brass_compass.name").withStyle(ChatFormatting.ITALIC);
             graphics.text(font, placeholder, nameBox.getX(), nameBox.getY(), COLOUR_PLACEHOLDER, false);
