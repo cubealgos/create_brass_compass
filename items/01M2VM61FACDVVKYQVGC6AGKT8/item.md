@@ -18,9 +18,9 @@ Start from `create_civilization`'s `JobBoardMenu`/`JobBoardScreen` pair: a `Menu
 
 ## Acceptance criteria
 
-- [ ] Game test: the menu built for a mock player lists only entries of that dimension, choosing a row sets the choice and the tracker, an out-of-range row is ignored, sneaking does not open anything.
-- [ ] Screen strings are translation keys with `en_us` entries.
-- [ ] `just client`: the screen opens, scrolls and looks like Create's request window (Kevin's check).
+- [x] Game test: the menu built for a mock player lists only entries of that dimension, choosing a row sets the choice and the tracker, an out-of-range row is ignored, sneaking does not open anything (`SwitchGameTest`, two tests; 8 game tests pass, 2026-09-19).
+- [x] Screen strings are translation keys with `en_us` entries (`screen.brass_compass.*`: title, dimension line with names for the three vanilla dimensions, distance, lost, empty, scroll).
+- [x] `just client`: the screen opens, scrolls and looks like Create's request window (Kevin's check). Built on the stock-keeper header/body/footer with text colours sampled from the texture's panels; the look itself is Kevin's check, gated by BC-7's client checklist together with the edit screen.
 
 ## Constraints and prior findings
 
