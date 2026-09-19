@@ -4,6 +4,15 @@ All notable changes to this project are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); the version scheme is
 `<mod SemVer>+<minecraft version>`.
 
+## [1.0.1+26.2] - 2026-09-19
+
+Tested with Minecraft 26.2, Fabric Loader 0.19.5, Fabric API 0.160.0 and Create Fly
+26.2-rc-2-6.0.9-1.
+
+### Fixed
+
+- The switch screen's empty-state text ran past the panel; it now wraps inside it and is centred.
+
 ## [1.0.0+26.2] - 2026-09-19
 
 Tested with Minecraft 26.2, Fabric Loader 0.19.5, Fabric API 0.160.0 and Create Fly

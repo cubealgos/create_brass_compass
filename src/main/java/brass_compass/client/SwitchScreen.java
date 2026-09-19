@@ -15,6 +15,7 @@ import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -42,6 +43,8 @@ public final class SwitchScreen extends AbstractSimiContainerScreen<SwitchMenu> 
     static final int PANELS = 5;
     static final int ROW_STRIDE = 20;
     private static final int ROW_LEFT = 7;
+    /** The panel's usable inner margin on each side, past the frame's edge. */
+    private static final int PANEL_INSET = 10;
     private static final int FIRST_ROW_TOP = 25;
     private static final int ROW_ICON_X = 14;
     private static final int ROW_TEXT_X = 35;
@@ -113,7 +116,12 @@ public final class SwitchScreen extends AbstractSimiContainerScreen<SwitchMenu> 
         graphics.blit(RenderPipelines.GUI_TEXTURED, PANEL.getLocation(), leftPos, y, EDGE_U, EDGE_V, PANEL.getWidth(), EDGE_H, 256, 256);
 
         if (rows().isEmpty()) {
-            graphics.text(font, Component.translatable("screen.brass_compass.empty"), leftPos + 10, listTop() + 12, COLOUR_ON_PANEL, false);
+            // UI-REQ-005: wrapped to the panel's inner width and centred, whatever the translation's length.
+            int line = listTop() + 12;
+            for (FormattedCharSequence text : font.split(Component.translatable("screen.brass_compass.empty"), PANEL.getWidth() - 2 * PANEL_INSET)) {
+                graphics.text(font, text, leftPos + PANEL.getWidth() / 2 - font.width(text) / 2, line, COLOUR_ON_PANEL, false);
+                line += font.lineHeight + 2;
+            }
             return;
         }
         graphics.enableScissor(leftPos + 3, listTop() - 2, leftPos + PANEL.getWidth() - 5, listBottom() - 1);
