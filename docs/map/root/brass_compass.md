@@ -9,5 +9,7 @@ signature is the contract; read the source only when the summary is not enough.
 The mod's server-and-common entrypoint: registers the item, its component, the menus and the packet.
 - `String MOD_ID`
 - `Logger LOGGER`
+- `DataComponentType<Destinations> DESTINATIONS` — What a brass compass remembers (docs/spec/contracts/data-contract.md).
+- `Identifier id(String path)`
 - `void onInitialize()`
 
