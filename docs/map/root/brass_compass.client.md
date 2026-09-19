@@ -10,7 +10,7 @@ The client entrypoint: screens only.
 - `void onInitializeClient()`
 
 ### `class EditScreen` — `src/main/java/brass_compass/client/EditScreen.java`
-The add/edit dialog, composed from regions of Create Fly's stock-keeper request window (UI-DEC-001): its cream title strip saying whether this is a new or a saved lodestone, three brown panel strips holding the place and the package-address label as the name field with Create's icon buttons for save and remove beside it, and the window's grey bottom band.
+The add/edit dialog, composed from regions of Create Fly's stock-keeper request window (UI-DEC-001): its cream title strip saying whether this is a new or a saved lodestone, three brown panel strips holding the place and the package-address label as the name field with the switch rows' check and X glyphs for save and remove beside it, and the window's grey bottom band.
 - `EditScreen(EditMenu menu, Inventory inventory, Component title)`
 - `EditScreen create(Minecraft minecraft, MenuType<EditListing> type, int syncId, Inventory inventory, Component title, RegistryFriendlyByteBuf buf)`
 - `void init()`

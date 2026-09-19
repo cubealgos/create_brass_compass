@@ -28,8 +28,8 @@ import org.lwjgl.glfw.GLFW;
 /**
  * The add/edit dialog, composed from regions of Create Fly's stock-keeper request window
  * (UI-DEC-001): its cream title strip saying whether this is a new or a saved lodestone, three
- * brown panel strips holding the place and the package-address label as the name field with
- * Create's icon buttons for save and remove beside it, and the window's grey bottom band. Each
+ * brown panel strips holding the place and the package-address label as the name field with the
+ * switch rows' check and X glyphs for save and remove beside it, and the window's grey bottom band. Each
  * row of content is centred in the frame. The atlas is the request window's own texture; regions
  * are blitted by coordinate, so the dialog is 224 wide (texture columns 16..240) and 90 tall.
  */
