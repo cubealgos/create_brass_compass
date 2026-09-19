@@ -28,29 +28,34 @@ import org.lwjgl.glfw.GLFW;
 /**
  * The add/edit dialog, composed from regions of Create Fly's stock-keeper request window
  * (UI-DEC-001): its cream title strip saying whether this is a new or a saved lodestone, three
- * brown panel strips holding the place and the package-address label as the name field, Create's
- * icon buttons for save and remove beside it, and the window's grey bottom band. The atlas is the
- * request window's own texture; regions are blitted by coordinate, so the dialog is 224 wide
- * (texture columns 16..240) and 91 tall.
+ * brown panel strips holding the place and the package-address label as the name field with
+ * Create's icon buttons for save and remove beside it, and the window's grey bottom band. Each
+ * row of content is centred in the frame. The atlas is the request window's own texture; regions
+ * are blitted by coordinate, so the dialog is 224 wide (texture columns 16..240) and 90 tall.
  */
 public final class EditScreen extends AbstractSimiContainerScreen<EditMenu> {
     private static final AllGuiTextures ATLAS = AllGuiTextures.STOCK_KEEPER_REQUEST_HEADER;
     private static final int U = 16;
     private static final int WIDTH = 224;
+    /** The frame's inner span in dialog coordinates: texture columns 24..231. */
+    private static final int FRAME_LEFT = 8;
+    private static final int FRAME_WIDTH = 208;
     private static final int TITLE_V = 0;
-    private static final int TITLE_H = 19;
+    private static final int TITLE_H = 18;
     private static final int PANEL_V = 48;
     private static final int PANEL_H = 20;
     private static final int PANELS = 3;
     private static final int BOTTOM_V = 148;
     private static final int BOTTOM_H = 12;
     private static final int HEIGHT = TITLE_H + PANELS * PANEL_H + BOTTOM_H;
-    /** The package-address label with its string tail, texture columns 16..158, rows 115..142. */
-    private static final int LABEL_V = 115;
-    private static final int LABEL_W = 142;
-    private static final int LABEL_H = 27;
-    private static final int LABEL_Y = TITLE_H + 26;
-    private static final int BUTTONS_Y = LABEL_Y + 4;
+    /** The package-address label with its outline, texture columns 29..155, rows 119..136. */
+    private static final int LABEL_U = 29;
+    private static final int LABEL_V = 119;
+    private static final int LABEL_W = 127;
+    private static final int LABEL_H = 18;
+    private static final int LABEL_Y = TITLE_H + 30;
+    private static final int GAP = 6;
+    private static final int BUTTON = 18;
     private static final int COLOUR_TITLE = 0xFF4A2D31;
     private static final int COLOUR_ON_PANEL = 0xFFCDBCA8;
     private static final int COLOUR_NAME = 0xFF714A40;
@@ -67,13 +72,21 @@ public final class EditScreen extends AbstractSimiContainerScreen<EditMenu> {
         return new EditScreen(new EditMenu(syncId, inventory, listing), inventory, title);
     }
 
+    /** Left edge of the centred label-and-buttons row. */
+    private int groupLeft() {
+        int buttons = menu.listing().existing() ? 2 : 1;
+        int width = LABEL_W + buttons * (GAP + BUTTON);
+        return leftPos + FRAME_LEFT + (FRAME_WIDTH - width) / 2;
+    }
+
     @Override
     protected void init() {
         setWindowOffset(0, 0);
         super.init();
         EditListing listing = menu.listing();
         String keep = nameBox != null ? nameBox.getValue() : listing.existing() ? listing.name() : "";
-        nameBox = new EditBox(new NoShadowFontWrapper(font), leftPos + 22, topPos + LABEL_Y + 8, 110, 10, Component.translatable("screen.brass_compass.name"));
+        int left = groupLeft();
+        nameBox = new EditBox(new NoShadowFontWrapper(font), left + 8, topPos + LABEL_Y + 5, LABEL_W - 14, 10, Component.translatable("screen.brass_compass.name"));
         nameBox.setBordered(false);
         nameBox.setTextColor(COLOUR_NAME);
         nameBox.setMaxLength(Names.MAX_LENGTH);
@@ -82,12 +95,13 @@ public final class EditScreen extends AbstractSimiContainerScreen<EditMenu> {
         addRenderableWidget(nameBox);
         setInitialFocus(nameBox);
 
-        IconButton confirm = new IconButton(leftPos + LABEL_W + 8, topPos + BUTTONS_Y, AllIcons.I_CONFIRM);
+        int buttonX = left + LABEL_W + GAP;
+        IconButton confirm = new IconButton(buttonX, topPos + LABEL_Y, AllIcons.I_CONFIRM);
         confirm.setToolTip(Component.translatable("screen.brass_compass.confirm"));
         confirm.withCallback(this::save);
         addRenderableWidget(confirm);
         if (listing.existing()) {
-            IconButton remove = new IconButton(leftPos + LABEL_W + 8 + 22, topPos + BUTTONS_Y, AllIcons.I_TRASH);
+            IconButton remove = new IconButton(buttonX + BUTTON + GAP, topPos + LABEL_Y, AllIcons.I_TRASH);
             remove.setToolTip(Component.translatable("screen.brass_compass.remove"));
             remove.withCallback(this::remove);
             addRenderableWidget(remove);
@@ -142,10 +156,13 @@ public final class EditScreen extends AbstractSimiContainerScreen<EditMenu> {
         region(graphics, atlas, leftPos, y, U, BOTTOM_V, WIDTH, BOTTOM_H);
 
         int panelTop = topPos + TITLE_H;
-        graphics.item(new ItemStack(Items.LODESTONE), leftPos + 16, panelTop + 4);
         Component place = Component.translatable("screen.brass_compass.position", listing.pos().getX(), listing.pos().getY(), listing.pos().getZ());
-        graphics.text(font, place, leftPos + 38, panelTop + 8, COLOUR_ON_PANEL, false);
-        region(graphics, atlas, leftPos, topPos + LABEL_Y, U, LABEL_V, LABEL_W, LABEL_H);
+        int placeWidth = 16 + GAP + font.width(place);
+        int placeX = leftPos + FRAME_LEFT + (FRAME_WIDTH - placeWidth) / 2;
+        graphics.item(new ItemStack(Items.LODESTONE), placeX, panelTop + 6);
+        graphics.text(font, place, placeX + 16 + GAP, panelTop + 10, COLOUR_ON_PANEL, false);
+
+        region(graphics, atlas, groupLeft(), topPos + LABEL_Y, LABEL_U, LABEL_V, LABEL_W, LABEL_H);
         if (nameBox != null && nameBox.getValue().isBlank()) {
             Component placeholder = Component.translatable("screen.brass_compass.name").withStyle(ChatFormatting.ITALIC);
             graphics.text(font, placeholder, nameBox.getX(), nameBox.getY(), COLOUR_PLACEHOLDER, false);
