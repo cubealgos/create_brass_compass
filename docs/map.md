@@ -15,13 +15,14 @@ signature page before calling into a package you did not write.
 |---|---|---|---|
 | `brass_compass` | root | BrassCompass |  |
 | `brass_compass.client` | root | BrassCompassClient, EditScreen, SwitchScreen |  |
+| `brass_compass.debug` | root | DebugCommand | Development-only tooling: the debug command that fills a compass with mock destinations (docs/spec/operations/testing.md). |
 | `brass_compass.destinations` | root | Destinations, Entry, Names | The pure part: a compass's entries and the choice per dimension, with no Minecraft imports (docs/spec/contracts/data-contract.md). |
 | `brass_compass.item` | root | BrassCompassItem, DestinationsCodec | The item side: the data component over the pure model, the item, its needle and tooltip. |
 | `brass_compass.network` | root | SavePayload | The one client-to-server packet (docs/spec/domains/ui.md, UI-REQ-007): save an entry for the held compass. |
 | `brass_compass.ui` | root | EditListing, EditMenu, EditProvider, SwitchListing, SwitchMenu, SwitchProvider | The two screens' server halves (docs/spec/domains/ui.md): listings, menus on Create Fly's framework, providers. |
 | `brass_compass` | root (test) | SourceSurfaceTest |  |
 | `brass_compass.destinations` | root (test) | DestinationsTest |  |
-| `brass_compass.gametest` | root (gametest) | ComponentGameTest, EditGameTest, HandoverGameTest, NeedleGameTest, RecipeGameTest, SmokeGameTest, SwitchGameTest |  |
+| `brass_compass.gametest` | root (gametest) | ComponentGameTest, DebugCommandGameTest, EditGameTest, HandoverGameTest, NeedleGameTest, RecipeGameTest, SmokeGameTest, SwitchGameTest |  |
 
 | build script | what |
 |---|---|
