@@ -18,9 +18,9 @@ Everything mechanical happens on the release branch before the production merge,
 
 ## Acceptance criteria
 
-- [ ] Security pass recorded below with a verdict, and Kevin's approval of that verdict.
-- [ ] `just check` green on the release branch; `just release` from the tagged, clean checkout wrote `dist/` with the jar, its SHA-256 and the notes.
-- [ ] `dist/` and `docs/modrinth.md` handed to Kevin for the upload.
+- [x] Security pass recorded below with a verdict, and Kevin's approval of that verdict (approved on condition of pinning Create Fly; pinned to 6.0.9-1 in 2993168).
+- [x] `just check` green on the release branch (12 game tests); `just release` at tag `v1.0.0+26.2` (8b10382) wrote `dist/` twice with the same SHA-256 `3c6595c53c94099343ef8f9b60e36634a37cb1e8da4425359278cf87a1ff09b6`.
+- [x] `dist/` copied to the main checkout (`create_brass_compass/dist/`, ignored) and `docs/modrinth.md` handed to Kevin for the upload, 2026-09-19.
 
 ## Constraints and prior findings
 
