@@ -1,7 +1,27 @@
 {
   "pulls": {
-    "at": 1789793374.6301818,
+    "at": 1789797283.6097121,
     "payload": [
+      {
+        "author": "scheeren",
+        "base": "development",
+        "ci": "",
+        "head": "feature/bc-15-debug-command",
+        "index": "5",
+        "state": "merged",
+        "title": "feat(brass_compass): development-only /brass_compass debug command with realistic mock destinations (BC-15)",
+        "updated": "2026-09-19T04:50:14Z"
+      },
+      {
+        "author": "scheeren",
+        "base": "development",
+        "ci": "",
+        "head": "feature/bc-15-debug-command",
+        "index": "4",
+        "state": "merged",
+        "title": "feat(brass_compass): development-only /brass_compass debug command with realistic mock destinations (BC-15)",
+        "updated": "2026-09-19T04:50:13Z"
+      },
       {
         "author": "scheeren",
         "base": "development",
@@ -20,7 +40,7 @@
         "index": "2",
         "state": "merged",
         "title": "chore(brass_compass): the issue tracker is the GitHub mirror's; every issues link points there (BC-14)",
-        "updated": "2026-09-19T04:32:38Z"
+        "updated": "2026-09-19T04:50:13Z"
       },
       {
         "author": "scheeren",
