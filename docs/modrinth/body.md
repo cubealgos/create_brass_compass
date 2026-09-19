@@ -6,7 +6,7 @@
 |---|---|
 | Name | Create: Brass Compass |
 | Slug | `brass-compass` |
-| Summary | A brass compass that remembers every lodestone it has been shown and points at the one you choose. |
+| Summary | A brass compass for Create Fly that remembers every lodestone it has been shown and points at the one you choose. |
 | Categories | Equipment, Technology, Utility (secondary: Adventure, Game-Mechanics, Management, Optimization) |
 | Licence | MIT |
 | Client side | Required |
