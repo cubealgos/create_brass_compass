@@ -57,7 +57,7 @@ or `lost` entry may be current; removing the current entry leaves no current ent
 | `COMPASS-REQ-003` | **When** the holder, not sneaking, uses the item on anything else, the system shall open the switch screen for that item (`UI-UC-002`). | Must | `UC-002` |
 | `COMPASS-REQ-014` | **While** the holder sneaks, the system shall pass the use through unchanged, as if the hand held nothing of this mod. | Must | `DEC-003` |
 | `COMPASS-REQ-015` | The system shall keep the chosen entry per dimension and point at the chosen entry of the dimension the holder is in. | Must | `DEC-004` |
-| `COMPASS-REQ-016` | **While** the needle has a target, the item shall show the enchantment glint, as a vanilla compass bound to a lodestone does. | Should | Kevin, 2026-09-19 |
+| `COMPASS-REQ-016` | **While** the needle has a target, the item shall show the enchantment glint, as a vanilla compass bound to a lodestone does, and the item shall be in `#minecraft:compasses` so the client draws the glint from vertex positions rather than the needle sprite (vanilla's rule for compasses and clocks; otherwise the glint jumps with every needle frame). | Should | Kevin, 2026-09-19 |
 | `COMPASS-REQ-004` | **When** an entry is saved, the system shall store position, dimension, name and `present` on the item, make it current, and play vanilla's lodestone-bind sound. | Must | `UC-001` |
 | `COMPASS-REQ-005` | **While** an entry is current, the system shall set the item's `lodestone_tracker` to that position on every server inventory tick, so the vanilla needle points at it. | Must | Over time |
 | `COMPASS-REQ-006` | **While** no entry is current, the system shall leave the tracker untracked, so the needle spins. | Must | Multiplicity |

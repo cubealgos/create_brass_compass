@@ -14,6 +14,7 @@ The add/edit dialog, composed from regions of Create Fly's stock-keeper request 
 - `EditScreen(EditMenu menu, Inventory inventory, Component title)`
 - `EditScreen create(Minecraft minecraft, MenuType<EditListing> type, int syncId, Inventory inventory, Component title, RegistryFriendlyByteBuf buf)`
 - `void init()`
+- `boolean mouseClicked(MouseButtonEvent event, boolean doubleClick)`
 - `boolean keyPressed(KeyEvent event)`
 - `void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick)`
 

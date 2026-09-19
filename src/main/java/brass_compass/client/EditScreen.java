@@ -5,11 +5,11 @@ import brass_compass.network.SavePayload;
 import brass_compass.ui.EditListing;
 import brass_compass.ui.EditMenu;
 import com.zurrtum.create.client.content.trains.station.NoShadowFontWrapper;
+import brass_compass.BrassCompass;
 import com.zurrtum.create.client.foundation.gui.AllGuiTextures;
-import com.zurrtum.create.client.foundation.gui.AllIcons;
 import com.zurrtum.create.client.foundation.gui.menu.AbstractSimiContainerScreen;
-import com.zurrtum.create.client.foundation.gui.widget.IconButton;
 import com.zurrtum.create.foundation.gui.menu.MenuType;
+import net.minecraft.client.input.MouseButtonEvent;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -62,7 +62,14 @@ public final class EditScreen extends AbstractSimiContainerScreen<EditMenu> {
     private static final int CORNER_U = 154;
     private static final int LABEL_Y = TITLE_H + 30;
     private static final int GAP = 6;
-    private static final int BUTTON = 18;
+    /** Save and remove are the switch screen's row glyphs: 8x8 check and X, on the label's baseline, at its pitch. */
+    private static final Identifier CHECK = BrassCompass.id("textures/gui/check.png");
+    private static final Identifier X = BrassCompass.id("textures/gui/x.png");
+    private static final int GLYPH = 8;
+    private static final int GLYPH_PITCH = 14;
+    private static final int GLYPH_Y = LABEL_Y + 5;
+    private static final int COLOUR_CHECK = 0xFF4FB05A;
+    private static final int COLOUR_X = 0xFF8C5D4B;
     private static final int COLOUR_TITLE = 0xFF4A2D31;
     private static final int COLOUR_ON_PANEL = 0xFFCDBCA8;
     private static final int COLOUR_NAME = 0xFF714A40;
@@ -81,9 +88,21 @@ public final class EditScreen extends AbstractSimiContainerScreen<EditMenu> {
 
     /** Left edge of the centred label-and-buttons row. */
     private int groupLeft() {
-        int buttons = menu.listing().existing() ? 2 : 1;
-        int width = LABEL_W + buttons * (GAP + BUTTON);
+        int glyphs = menu.listing().existing() ? 2 : 1;
+        int width = LABEL_W + GAP + (glyphs - 1) * GLYPH_PITCH + GLYPH;
         return leftPos + FRAME_LEFT + (FRAME_WIDTH - width) / 2;
+    }
+
+    private int checkX() {
+        return groupLeft() + LABEL_W + GAP;
+    }
+
+    private int removeX() {
+        return checkX() + GLYPH_PITCH;
+    }
+
+    private boolean overGlyph(double mx, double my, int x) {
+        return mx >= x - 3 && mx < x + GLYPH + 3 && my >= topPos + GLYPH_Y - 5 && my < topPos + GLYPH_Y + GLYPH + 5;
     }
 
     @Override
@@ -102,17 +121,21 @@ public final class EditScreen extends AbstractSimiContainerScreen<EditMenu> {
         addRenderableWidget(nameBox);
         setInitialFocus(nameBox);
 
-        int buttonX = left + LABEL_W + GAP;
-        IconButton confirm = new IconButton(buttonX, topPos + LABEL_Y, AllIcons.I_CONFIRM);
-        confirm.setToolTip(Component.translatable("screen.brass_compass.confirm"));
-        confirm.withCallback(this::save);
-        addRenderableWidget(confirm);
-        if (listing.existing()) {
-            IconButton remove = new IconButton(buttonX + BUTTON + GAP, topPos + LABEL_Y, AllIcons.I_TRASH);
-            remove.setToolTip(Component.translatable("screen.brass_compass.remove"));
-            remove.withCallback(this::remove);
-            addRenderableWidget(remove);
+    }
+
+    @Override
+    public boolean mouseClicked(MouseButtonEvent event, boolean doubleClick) {
+        if (event.button() == 0) {
+            if (overGlyph(event.x(), event.y(), checkX())) {
+                save();
+                return true;
+            }
+            if (menu.listing().existing() && overGlyph(event.x(), event.y(), removeX())) {
+                remove();
+                return true;
+            }
         }
+        return super.mouseClicked(event, doubleClick);
     }
 
     private void save() {
@@ -176,6 +199,10 @@ public final class EditScreen extends AbstractSimiContainerScreen<EditMenu> {
         region(graphics, atlas, labelX + 1, labelY + 1, CORNER_U, LABEL_V + 1, 1, 1);
         region(graphics, atlas, labelX + 1, labelY + LABEL_H - 2, CORNER_U, LABEL_V + LABEL_H - 2, 1, 1);
         region(graphics, atlas, labelX + 1, labelY + 2, LABEL_U, LABEL_V + 2, 1, LABEL_H - 4);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, CHECK, checkX(), topPos + GLYPH_Y, 0, 0, GLYPH, GLYPH, GLYPH, GLYPH, COLOUR_CHECK);
+        if (listing.existing()) {
+            graphics.blit(RenderPipelines.GUI_TEXTURED, X, removeX(), topPos + GLYPH_Y, 0, 0, GLYPH, GLYPH, GLYPH, GLYPH, COLOUR_X);
+        }
         if (nameBox != null && nameBox.getValue().isBlank()) {
             Component placeholder = Component.translatable("screen.brass_compass.name").withStyle(ChatFormatting.ITALIC);
             graphics.text(font, placeholder, nameBox.getX(), nameBox.getY(), COLOUR_PLACEHOLDER, false);

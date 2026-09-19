@@ -62,6 +62,7 @@ public final class HandoverGameTest {
         helper.assertTrue(after.chosen(dim).orElseThrow().name().equals("Home"), "home is chosen");
         helper.assertTrue(compass.get(DataComponents.LODESTONE_TRACKER).target().orElseThrow().pos().equals(home), "the needle points home for the new holder");
         helper.assertTrue(BrassCompass.BRASS_COMPASS.isFoil(compass), "and the item glints (COMPASS-REQ-016)");
+        helper.assertTrue(compass.is(net.minecraft.tags.ItemTags.COMPASSES), "and is a compass to the client's glint rule (COMPASS-REQ-016)");
         helper.succeed();
     }
 
