@@ -10,16 +10,15 @@ The client entrypoint: screens only.
 - `void onInitializeClient()`
 
 ### `class EditScreen` — `src/main/java/brass_compass/client/EditScreen.java`
-The add/edit dialog, composed from regions of Create Fly's stock-keeper request window (UI-DEC-001): its cream title strip, two brown panel strips for the place and the state, and the lower footer with the package-address label as the name field and the grey send arrow as the save button.
+The add/edit dialog, composed from regions of Create Fly's stock-keeper request window (UI-DEC-001): its cream title strip saying whether this is a new or a saved lodestone, three brown panel strips holding the place and the package-address label as the name field, Create's icon buttons for save and remove beside it, and the window's grey bottom band.
 - `EditScreen(EditMenu menu, Inventory inventory, Component title)`
 - `EditScreen create(Minecraft minecraft, MenuType<EditListing> type, int syncId, Inventory inventory, Component title, RegistryFriendlyByteBuf buf)`
 - `void init()`
-- `boolean mouseClicked(MouseButtonEvent event, boolean doubleClick)`
 - `boolean keyPressed(KeyEvent event)`
 - `void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick)`
 
 ### `class SwitchScreen` — `src/main/java/brass_compass/client/SwitchScreen.java`
-The switch screen on Create Fly's stock-keeper categories layout (UI-DEC-001): the header names the dimension, the brown panel holds one tan entry row per waypoint with an icon, the name, the distance and three actions on the right: a check that chooses and closes, a pencil that opens the edit screen, and the row's own X that removes (UI-REQ-004, UI-REQ-011).
+The switch screen on Create Fly's stock-keeper categories layout (UI-DEC-001): the header names the dimension, the brown panel holds one tan entry row per waypoint with an icon, the name, the distance and three actions on the right: a green check that chooses and closes, a yellow pencil that opens the edit screen, and the row's own X that removes (UI-REQ-004, UI-REQ-011).
 - `int PANELS`
 - `int ROW_STRIDE`
 - `SwitchScreen(SwitchMenu menu, Inventory inventory, Component title)`

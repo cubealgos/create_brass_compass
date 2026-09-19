@@ -93,14 +93,16 @@ dimension, a marker on the current one, a lost marker. 2. The row's check choose
 - `UI-DEC-001` — **Create Fly's own list and edit layouts, not hand-placed text on a frame**
   (Kevin, 2026-09-19, superseding the stock-keeper request-window choice of the same day). The
   switch screen is the stock keeper's *categories* screen: its blue header, brown panel, tan entry
-  row texture (icon, name, distance, the row's X), grey footer with the confirm button, and its own
-  spacing numbers. The add/edit screen is the frogport (package port) screen: the name box in the
+  row texture (icon, name, distance, then a green check, a yellow pencil and the row's own X), the
+  frame's bottom edge and no footer (Kevin, second look), and its own spacing numbers. The pencil
+  is the mod's one gui sprite, drawn in Create's flat icon style and tinted like the check. The add/edit screen is the frogport (package port) screen: the name box in the
   blue header strip, the grey body naming the place, confirm bottom right, trash beside it for an
   existing entry. Kevin's first client look (2026-09-19) replaced the frogport edit screen: the
   add/edit screen is a dialog composed from the request window's own regions (its cream title
-  strip, brown panel, the package-address label as the name field with the italic placeholder, and
-  the grey send arrow as the save button), and the switch rows carry a check, a pencil and the X
-  instead of left and right clicks. Create's screens are bound to their menus and cannot be subclassed; what is
+  strip naming new or edit, brown panel with the place, the package-address label as the name field
+  with the italic placeholder, Create's icon buttons for save and remove beside it, the window's
+  grey bottom band; the send arrow was tried and dropped as too big), and the switch rows carry a
+  check, a pencil and the X instead of left and right clicks. Create's screens are bound to their menus and cannot be subclassed; what is
   reused is `AllGuiTextures`, `IconButton`, `EditBox` with Create's no-shadow font, and the layout
   numbers read from those screens. **Cost if wrong:** the textures are Create Fly's; a resource
   pack changing them changes us.
