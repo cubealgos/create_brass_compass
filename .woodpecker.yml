@@ -1,0 +1,26 @@
+# CI runs exactly what runs locally: `just check` on the same JDK floor the platform matrix names,
+# then a short fixed-seed harness run with the chaos actor. If it passes on a laptop and fails here,
+# that difference is a real finding rather than a configuration guess.
+#
+# DORMANT: this repository has no remote yet (docs/spec/contracts/platform-matrix.md §7). The file
+# is committed and every command in it is proven locally, so the first remote gets a working
+# pipeline rather than a first draft. Nothing here is exercised by a forge until then.
+#
+# Temurin 25 is pinned to the JDK major the platform matrix floors on; the Gradle wrapper fetches
+# its own distribution, so the image needs no Gradle.
+
+when:
+  - event: [push, pull_request, manual]
+
+steps:
+  - name: check
+    image: eclipse-temurin:25-jdk
+    environment:
+      # Gradle's daemon has nothing to keep warm in a one-shot container.
+      GRADLE_OPTS: -Dorg.gradle.daemon=false
+    commands:
+      - ./.ci/install-tools.sh
+      - just check
+      # A short adversarial run on every push; the thousand-year run is a release gate, not a
+      # per-push cost (docs/spec/operations/testing.md §3).
+      - just harness --seed 1 --villages 3 --agents 50 --years 5 --chaos on

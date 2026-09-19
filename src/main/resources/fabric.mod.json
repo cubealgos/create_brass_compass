@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "brass_compass",
+  "version": "${version}",
+  "name": "Create Fly: Brass Compass",
+  "description": "A brass compass that remembers every lodestone it has been shown and points at the one you choose.",
+  "authors": ["create_brass_compass contributors"],
+  "contact": {},
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["brass_compass.BrassCompass"],
+    "client": ["brass_compass.client.BrassCompassClient"]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "~26.2",
+    "java": ">=25",
+    "fabric-api": ">=0.160.0",
+    "create": "*"
+  }
+}
