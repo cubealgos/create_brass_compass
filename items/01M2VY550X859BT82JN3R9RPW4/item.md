@@ -18,8 +18,8 @@ First ticket after the push, so also the first through a forge pull request: `de
 
 ## Acceptance criteria
 
-- [ ] `fabric.mod.json`, `README.md`, `SUPPORT.md`, `docs/modrinth/body.md` carry the Forgejo, mirror and Modrinth links; the spec's platform matrix and the CI file no longer describe the repo as remote-less (spec amended in the cubealgos vault, copy synced).
-- [ ] `just check` green; merged through a Forgejo pull request into `development`.
+- [x] `fabric.mod.json`, `README.md`, `SUPPORT.md`, `docs/modrinth/body.md` carry the Forgejo, mirror and Modrinth links; the spec's release and compliance rows and the CI file no longer describe the repo as remote-less (spec amended in the cubealgos vault, copy synced, 2026-09-19).
+- [x] `just check` green (12 game tests); merged through Forgejo pull request #1 into `development` (ec78216), verified against `origin/development`. Also added `.gitea/default_merge_message` templates so later forge merges take the PR title as their subject.
 
 ## Constraints and prior findings
 
