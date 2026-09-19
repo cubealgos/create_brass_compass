@@ -18,7 +18,7 @@ Rendered with the palette sampled from Create's own icon (outer band 60,118,168;
 
 ## Acceptance criteria
 
-- [ ] `docs/modrinth/icon.png` is the badge; `tools/icon.py` regenerates it; the finding is in the vault.
+- [x] `docs/modrinth/icon.png` is the badge; `tools/icon.py` (`just icon`) regenerates it; the finding is in `vault/technical/minecraft/create-fly-26-2.md` (2026-09-19).
 
 ## Constraints and prior findings
 
