@@ -6,14 +6,15 @@ import brass_compass.ui.SwitchMenu;
 import com.zurrtum.create.client.foundation.gui.AllGuiTextures;
 import com.zurrtum.create.client.foundation.gui.AllIcons;
 import com.zurrtum.create.client.foundation.gui.menu.AbstractSimiContainerScreen;
-import com.zurrtum.create.client.foundation.gui.widget.IconButton;
 import com.zurrtum.create.foundation.gui.menu.MenuType;
 import java.util.List;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.input.MouseButtonEvent;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -21,32 +22,49 @@ import net.minecraft.world.item.Items;
 /**
  * The switch screen on Create Fly's stock-keeper <em>categories</em> layout (UI-DEC-001): the
  * header names the dimension, the brown panel holds one tan entry row per waypoint with an icon,
- * the name, the distance and the row's X, the grey footer carries the confirm button. The wheel
- * scrolls; a left click on a row chooses it and closes, a right click opens its edit screen, the X
- * removes it (UI-REQ-004, UI-REQ-011). Layout numbers are the category screen's own.
+ * the name, the distance and three actions on the right: a green check that chooses and closes, a
+ * yellow pencil that opens the edit screen, and the row's own X that removes (UI-REQ-004,
+ * UI-REQ-011). No footer: the panel closes with the frame's bottom edge. The wheel scrolls.
  */
 public final class SwitchScreen extends AbstractSimiContainerScreen<SwitchMenu> {
     private static final AllGuiTextures HEADER = AllGuiTextures.STOCK_KEEPER_CATEGORY_HEADER;
     private static final AllGuiTextures PANEL = AllGuiTextures.STOCK_KEEPER_CATEGORY;
-    private static final AllGuiTextures FOOTER = AllGuiTextures.STOCK_KEEPER_CATEGORY_FOOTER;
     private static final AllGuiTextures ENTRY = AllGuiTextures.STOCK_KEEPER_CATEGORY_ENTRY;
+    /** Two 8x8 glyphs drawn to the row's own X: same 7-pixel body, same two-pixel stroke, same baseline. */
+    private static final Identifier CHECK = BrassCompass.id("textures/gui/check.png");
+    private static final Identifier PENCIL = BrassCompass.id("textures/gui/pencil.png");
+    private static final int GLYPH = 8;
+    private static final int GLYPH_Y = 4;
+    /** The frame's bottom edge: the first two rows of the categories footer, dark line and highlight. */
+    private static final int EDGE_U = 32;
+    private static final int EDGE_V = 80;
+    private static final int EDGE_H = 2;
     static final int PANELS = 5;
     static final int ROW_STRIDE = 20;
     private static final int ROW_LEFT = 7;
     private static final int FIRST_ROW_TOP = 25;
     private static final int ROW_ICON_X = 14;
     private static final int ROW_TEXT_X = 35;
-    private static final int ROW_X_GLYPH = 152;
+    /** Glyph columns inside the row: the X sits at 159..165, the others keep its 14-pixel pitch. */
+    private static final int CHECK_X = 131;
+    private static final int PENCIL_X = 145;
+    private static final int X_GLYPH = 159;
+    /** Click bands, each centred on its glyph. */
+    private static final int CHECK_HIT = CHECK_X - 4;
+    private static final int PENCIL_HIT = PENCIL_X - 4;
+    private static final int X_HIT = X_GLYPH - 4;
     private static final int COLOUR_HEADER = 0xFF3D3C48;
     private static final int COLOUR_ROW = 0xFF656565;
     private static final int COLOUR_ROW_CHOSEN = 0xFF3D3C48;
     private static final int COLOUR_ROW_LOST = 0xFFA04040;
     private static final int COLOUR_ON_PANEL = 0xFFEEEEEE;
+    private static final int COLOUR_CHECK = 0xFF4FB05A;
+    private static final int COLOUR_PENCIL = 0xFFE8B84A;
 
     private int scroll;
 
     public SwitchScreen(SwitchMenu menu, Inventory inventory, Component title) {
-        super(menu, inventory, title, PANEL.getWidth(), HEADER.getHeight() + PANELS * PANEL.getHeight() + FOOTER.getHeight());
+        super(menu, inventory, title, PANEL.getWidth(), HEADER.getHeight() + PANELS * PANEL.getHeight() + EDGE_H);
     }
 
     public static SwitchScreen create(Minecraft minecraft, MenuType<SwitchListing> type, int syncId, Inventory inventory, Component title, RegistryFriendlyByteBuf buf) {
@@ -58,9 +76,6 @@ public final class SwitchScreen extends AbstractSimiContainerScreen<SwitchMenu> 
     protected void init() {
         setWindowOffset(0, 0);
         super.init();
-        IconButton confirm = new IconButton(leftPos + imageWidth - 25, topPos + imageHeight - 25, AllIcons.I_CONFIRM);
-        confirm.withCallback(this::onClose);
-        addRenderableWidget(confirm);
     }
 
     private List<SwitchListing.Row> rows() {
@@ -95,15 +110,13 @@ public final class SwitchScreen extends AbstractSimiContainerScreen<SwitchMenu> 
             PANEL.render(graphics, leftPos, y);
             y += PANEL.getHeight();
         }
-        FOOTER.render(graphics, leftPos, y);
-        Component hint = Component.translatable(rows().isEmpty() ? "screen.brass_compass.hint_empty" : "screen.brass_compass.hint");
-        graphics.text(font, hint, leftPos + 10, y + 12, COLOUR_HEADER, false);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, PANEL.getLocation(), leftPos, y, EDGE_U, EDGE_V, PANEL.getWidth(), EDGE_H, 256, 256);
 
         if (rows().isEmpty()) {
             graphics.text(font, Component.translatable("screen.brass_compass.empty"), leftPos + 10, listTop() + 12, COLOUR_ON_PANEL, false);
             return;
         }
-        graphics.enableScissor(leftPos + 3, listTop() - 2, leftPos + PANEL.getWidth() - 5, listBottom() + 1);
+        graphics.enableScissor(leftPos + 3, listTop() - 2, leftPos + PANEL.getWidth() - 5, listBottom() - 1);
         for (int index = scroll; index < rows().size() && rowTop(index) < listBottom(); index++) {
             renderRow(graphics, index, rows().get(index));
         }
@@ -121,10 +134,12 @@ public final class SwitchScreen extends AbstractSimiContainerScreen<SwitchMenu> 
         String name = row.present() ? row.name() : row.name() + " " + Component.translatable("screen.brass_compass.lost").getString();
         Component distance = Component.translatable("screen.brass_compass.distance", row.distance());
         int distanceWidth = font.width(distance);
-        int nameRight = x + ROW_X_GLYPH - 4 - distanceWidth - 4;
-        String shown = font.plainSubstrByWidth(name, nameRight - (x + ROW_TEXT_X));
+        int distanceX = x + CHECK_HIT - 4 - distanceWidth;
+        String shown = font.plainSubstrByWidth(name, distanceX - 4 - (x + ROW_TEXT_X));
         graphics.text(font, Component.literal(shown), x + ROW_TEXT_X, y + 5, colour, false);
-        graphics.text(font, distance, x + ROW_X_GLYPH - 4 - distanceWidth, y + 5, colour, false);
+        graphics.text(font, distance, distanceX, y + 5, colour, false);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, CHECK, x + CHECK_X, y + GLYPH_Y, 0, 0, GLYPH, GLYPH, GLYPH, GLYPH, COLOUR_CHECK);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, PENCIL, x + PENCIL_X, y + GLYPH_Y, 0, 0, GLYPH, GLYPH, GLYPH, GLYPH, COLOUR_PENCIL);
     }
 
     private String dimensionName() {
@@ -144,22 +159,24 @@ public final class SwitchScreen extends AbstractSimiContainerScreen<SwitchMenu> 
 
     @Override
     public boolean mouseClicked(MouseButtonEvent event, boolean doubleClick) {
+        if (event.button() != 0) {
+            return super.mouseClicked(event, doubleClick);
+        }
         int x = leftPos + ROW_LEFT;
         for (int index = scroll; index < rows().size() && rowTop(index) < listBottom(); index++) {
             int top = rowTop(index);
-            if (event.x() < x || event.x() >= x + ENTRY.getWidth() || event.y() < top || event.y() >= top + ENTRY.getHeight()) {
+            if (event.x() < x + CHECK_HIT || event.x() >= x + ENTRY.getWidth() || event.y() < top || event.y() >= top + ENTRY.getHeight()) {
                 continue;
             }
-            if (event.button() == 1) {
-                Minecraft.getInstance().gameMode.handleInventoryButtonClick(menu.containerId, SwitchMenu.EDIT + index);
-                return true;
-            }
-            if (event.x() >= x + ROW_X_GLYPH) {
+            double rel = event.x() - x;
+            if (rel >= X_HIT) {
                 Minecraft.getInstance().gameMode.handleInventoryButtonClick(menu.containerId, SwitchMenu.REMOVE + index);
-                return true;
+            } else if (rel >= PENCIL_HIT) {
+                Minecraft.getInstance().gameMode.handleInventoryButtonClick(menu.containerId, SwitchMenu.EDIT + index);
+            } else {
+                Minecraft.getInstance().gameMode.handleInventoryButtonClick(menu.containerId, index);
+                onClose();
             }
-            Minecraft.getInstance().gameMode.handleInventoryButtonClick(menu.containerId, index);
-            onClose();
             return true;
         }
         return super.mouseClicked(event, doubleClick);

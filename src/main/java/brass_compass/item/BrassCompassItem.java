@@ -85,6 +85,13 @@ public final class BrassCompassItem extends Item {
         return InteractionResult.SUCCESS;
     }
 
+    /** Glints like a vanilla compass bound to a lodestone: whenever the needle has a target (COMPASS-REQ-016). */
+    @Override
+    public boolean isFoil(ItemStack stack) {
+        LodestoneTracker tracker = stack.get(DataComponents.LODESTONE_TRACKER);
+        return tracker != null && tracker.target().isPresent();
+    }
+
     @Override
     public void inventoryTick(ItemStack stack, ServerLevel level, Entity holder, EquipmentSlot slot) {
         refresh(stack, level);
@@ -96,7 +103,7 @@ public final class BrassCompassItem extends Item {
         String dimension = dimensionId(level);
         OptionalInt chosen = d.chosenIndex(dimension);
         if (chosen.isEmpty()) {
-            stack.set(DataComponents.LODESTONE_TRACKER, new LodestoneTracker(Optional.empty(), false));
+            setTracker(stack, new LodestoneTracker(Optional.empty(), false));
             return;
         }
         Entry entry = d.entries().get(chosen.getAsInt());
@@ -110,7 +117,14 @@ public final class BrassCompassItem extends Item {
         LodestoneTracker tracker = present
             ? new LodestoneTracker(Optional.of(GlobalPos.of(key, pos)), true)
             : new LodestoneTracker(Optional.empty(), true);
-        stack.set(DataComponents.LODESTONE_TRACKER, tracker);
+        setTracker(stack, tracker);
+    }
+
+    /** Writes the tracker only when it differs, as vanilla's compass does, so the stack is not touched every tick. */
+    private static void setTracker(ItemStack stack, LodestoneTracker tracker) {
+        if (!tracker.equals(stack.get(DataComponents.LODESTONE_TRACKER))) {
+            stack.set(DataComponents.LODESTONE_TRACKER, tracker);
+        }
     }
 
     @Override
