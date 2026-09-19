@@ -18,9 +18,9 @@ A record-based model in a package with no Minecraft imports, checked by `verifyP
 
 ## Acceptance criteria
 
-- [ ] Unit tests: add, rename, remove, choose per dimension, duplicate position returns the existing entry, name truncation, codec round trip, newer version read-only (`DATA-REQ-001`).
-- [ ] `verifyPurePackage` fails on a deliberate Minecraft import and passes without (proof in the ticket).
-- [ ] The component survives a save round trip in a game test.
+- [x] Unit tests: add, rename, remove, choose per dimension, duplicate position returns the existing entry, name truncation, codec round trip, newer version read-only (`DATA-REQ-001`). `DestinationsTest`, six tests; the codec round trip is the game test below.
+- [x] `verifyPurePackage` fails on a deliberate Minecraft import and passes without (proof 2026-09-19: `import net.minecraft.core.BlockPos;` prepended to `Names.java` gave `pure package imports the game: Names.java: import net.minecraft.core.BlockPos;`; removed, the task passes).
+- [x] The component survives a save round trip in a game test (`ComponentGameTest`: two entries, one marked lost, encoded and parsed through `ItemStack.CODEC` with registry ops, equal).
 
 ## Constraints and prior findings
 
