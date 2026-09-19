@@ -18,9 +18,9 @@ An `Item` subclass (not `CompassItem`) so `use` and `useOn` are ours; `inventory
 
 ## Acceptance criteria
 
-- [ ] Game test: an entry chosen in the overworld sets the tracker to it; none chosen leaves it untracked; breaking the lodestone marks the entry lost within a tick and placing it back revives it.
-- [ ] The 32 frames and the item model exist and reference each other; `just client` shows a brass needle (Kevin's check).
-- [ ] Tooltip shows the chosen entry's name or 'no destination'.
+- [x] Game test: an entry chosen in the overworld sets the tracker to it; none chosen leaves it untracked; breaking the lodestone marks the entry lost within a tick and placing it back revives it (`NeedleGameTest`).
+- [x] The 32 frames and the item model exist and reference each other; `just client` shows a brass needle (Kevin's check). `just needle` wrote 32 tinted textures, 32 frame models and the item model from vanilla's; the in-game look is Kevin's check at the screens ticket.
+- [x] Tooltip shows the chosen entry's name or 'no destination' (`appendHoverText`, translation keys in `en_us`).
 
 ## Constraints and prior findings
 
