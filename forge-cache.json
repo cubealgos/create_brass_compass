@@ -1,6 +1,17 @@
 {
   "pulls": {
-    "at": 1789791564.10357,
-    "payload": []
+    "at": 1789792217.247017,
+    "payload": [
+      {
+        "author": "scheeren",
+        "base": "development",
+        "ci": "",
+        "head": "chore/bc-13-public-home",
+        "index": "1",
+        "state": "merged",
+        "title": "chore(brass_compass): public home: Forgejo, GitHub mirror and Modrinth links; forge merge templates (BC-13)",
+        "updated": "2026-09-19T04:20:35Z"
+      }
+    ]
   }
 }
