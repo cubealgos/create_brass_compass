@@ -12,6 +12,7 @@ The brass compass (docs/spec/domains/compass.md).
 - `BrassCompassItem(Properties properties)`
 - `Destinations destinationsOf(ItemStack stack)`
 - `String dimensionId(Level level)`
+- `InteractionResult useOn(UseOnContext context)` — Not sneaking, a use on a lodestone opens the add/edit screen for it (COMPASS-REQ-002); anything else passes on to #use.
 - `InteractionResult use(Level level, Player player, InteractionHand hand)` — Not sneaking, a use anywhere but on a lodestone opens the switch screen (COMPASS-REQ-003); sneaking is a normal right-click (COMPASS-REQ-014).
 - `void inventoryTick(ItemStack stack, ServerLevel level, Entity holder, EquipmentSlot slot)`
 - `void refresh(ItemStack stack, ServerLevel level)` — Derives the tracker and the present marks for the level the holder is in; public for the game tests.

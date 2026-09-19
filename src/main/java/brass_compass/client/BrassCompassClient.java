@@ -9,5 +9,6 @@ public final class BrassCompassClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         AllMenuScreens.register(BrassCompass.SWITCH_MENU, SwitchScreen::create);
+        AllMenuScreens.register(BrassCompass.EDIT_MENU, EditScreen::create);
     }
 }

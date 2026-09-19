@@ -11,7 +11,8 @@
       "brass_compass.gametest.ComponentGameTest",
       "brass_compass.gametest.NeedleGameTest",
       "brass_compass.gametest.RecipeGameTest",
-      "brass_compass.gametest.SwitchGameTest"
+      "brass_compass.gametest.SwitchGameTest",
+      "brass_compass.gametest.EditGameTest"
     ]
   },
   "depends": {

@@ -6,8 +6,13 @@ import brass_compass.item.DestinationsCodec;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
+import brass_compass.network.SavePayload;
+import brass_compass.ui.EditListing;
+import brass_compass.ui.EditMenu;
 import brass_compass.ui.SwitchListing;
 import brass_compass.ui.SwitchMenu;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import com.zurrtum.create.AllCreativeModeTabs;
 import com.zurrtum.create.api.registry.CreateRegistries;
 import com.zurrtum.create.foundation.gui.menu.MenuType;
@@ -45,6 +50,10 @@ public final class BrassCompass implements ModInitializer {
     public static final MenuType<SwitchListing> SWITCH_MENU = Registry.register(CreateRegistries.MENU_TYPE, id("switch"),
         (MenuType<SwitchListing>) (syncId, inventory, listing) -> new SwitchMenu(syncId, inventory, listing));
 
+    /** The add/edit screen's menu (UI-UC-001). */
+    public static final MenuType<EditListing> EDIT_MENU = Registry.register(CreateRegistries.MENU_TYPE, id("edit"),
+        (MenuType<EditListing>) (syncId, inventory, listing) -> new EditMenu(syncId, inventory, listing));
+
     public static Identifier id(String path) {
         return Identifier.fromNamespaceAndPath(MOD_ID, path);
     }
@@ -54,6 +63,9 @@ public final class BrassCompass implements ModInitializer {
         // COMPASS-DEC-005: listed in Create Fly's base tab, beside the brass things.
         CreativeModeTabEvents.modifyOutputEvent(AllCreativeModeTabs.BASE_GROUP).register(output ->
             output.accept(new ItemStack(BRASS_COMPASS), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS));
+        // UI-REQ-007: the one packet, save an entry for the held compass.
+        PayloadTypeRegistry.serverboundPlay().register(SavePayload.TYPE, SavePayload.STREAM_CODEC);
+        ServerPlayNetworking.registerGlobalReceiver(SavePayload.TYPE, (payload, context) -> SavePayload.apply(context.player(), payload));
         LOGGER.info("Brass Compass ready beside Create Fly");
     }
 }
