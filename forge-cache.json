@@ -1,7 +1,17 @@
 {
   "pulls": {
-    "at": 1789798090.847648,
+    "at": 1789803293.8863108,
     "payload": [
+      {
+        "author": "scheeren",
+        "base": "development",
+        "ci": "success",
+        "head": "bugfix/bc-17-ci-tools",
+        "index": "7",
+        "state": "merged",
+        "title": "fix(brass_compass): CI installer adds curl, git and python3 to the pipeline image and fetches just as a tarball (BC-17)",
+        "updated": "2026-09-19T06:08:13Z"
+      },
       {
         "author": "scheeren",
         "base": "development",
